@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { profileApi } from '@/lib/api';
 import type { Profile } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,12 @@ export function ProfileEditor({ profile, onUpdate }: Props) {
       available_for_work: true,
     }
   );
+
+  useEffect(() => {
+    if (profile) {
+      setForm(profile);
+    }
+  }, [profile]);
 
   async function handleSave() {
     setSaving(true);
