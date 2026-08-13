@@ -1,0 +1,15 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  images: { unoptimized: true },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.resolve.symlinks = false;
+    }
+    return config;
+  },
+};
+
+module.exports = nextConfig;

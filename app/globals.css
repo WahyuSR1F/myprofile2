@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 60% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 214 90% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 60% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 214 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 214 90% 56%;
+    --chart-1: 214 90% 56%;
+    --chart-2: 199 89% 48%;
+    --chart-3: 226 70% 55%;
+    --chart-4: 142 71% 45%;
+    --chart-5: 38 92% 50%;
+    --radius: 0.9rem;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 214 90% 60%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 52%;
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 214 90% 60%;
+    --chart-1: 214 90% 60%;
+    --chart-2: 199 89% 52%;
+    --chart-3: 226 70% 60%;
+    --chart-4: 142 71% 45%;
+    --chart-5: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  }
+
+  .dark .glass {
+    background-color: rgba(15, 23, 42, 0.72);
+    border-color: rgba(96, 165, 250, 0.16);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.4);
+  }
+
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dark .glass-card {
+    background-color: rgba(15, 23, 42, 0.66);
+    border-color: rgba(96, 165, 250, 0.14);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+  }
+
+  .dark .glass-card:hover {
+    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
+  }
+
+  .glass-card-light {
+    @apply bg-white/90 backdrop-blur-lg border border-sky-100 rounded-2xl;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+
+  .glass-card-light:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(59, 130, 246, 0.12);
+    background-color: rgba(255, 255, 255, 0.96);
+  }
+
+  .dark .glass-card-light {
+    @apply bg-slate-900/90 border-slate-800;
+  }
+
+  .dark .glass-card-light:hover {
+    background-color: rgba(30, 41, 59, 0.95);
+    box-shadow: 0 18px 36px rgba(2, 6, 23, 0.4);
+  }
+
+  /* Glass card dark variant for dark sections */
+  .glass-card-dark {
+    @apply bg-white/10 backdrop-blur-lg rounded-2xl;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+
+  .glass-card-dark:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600;
+  }
+
+  .grid-pattern {
+    background-image: linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .grid-pattern-dark {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .blob {
+    @apply absolute rounded-full blur-3xl opacity-30;
+    animation: blob 8s infinite ease-in-out;
+  }
+
+  /* ======================================
+     SECTION BACKGROUND VARIANTS - PALET BIRU DONGGER & ABU-ABU
+  ====================================== */
+
+  /* Section 1: Hero — blue dongker utama */
+  .section-hero {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #020617 0%, #0f172a 30%, #1e293b 70%, #0f172a 100%);
+  }
+
+  /* Section 2: About — blue dongker medium */
+  .section-dark-navy {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #334155 80%, #1e293b 100%);
+  }
+
+  /* Section 3: Experience — blue dongker dengan slate */
+  .section-teal {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #0c1d35 0%, #1a2944 40%, #2d3748 80%, #1a2944 100%);
+  }
+
+  /* Section 4: Skills — dark charcoal dengan blue tint */
+  .section-charcoal {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 40%, #374151 80%, #1f2937 100%);
+  }
+
+  /* Section 5: Projects — blue dongker gelap */
+  .section-indigo {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #071426 0%, #0f254a 40%, #1a365d 80%, #0f254a 100%);
+  }
+
+  /* Section 6: Education — slate gray dengan blue tint */
+  .section-forest {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 40%, #4a5568 80%, #2d3748 100%);
+  }
+
+  /* Section 7: Certificates — gray dengan blue subtle */
+  .section-amber-dark {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 40%, #4b5563 80%, #374151 100%);
+  }
+
+  /* Section 8: Achievements — blue dongker terang */
+  .section-purple-dark {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 40%, #475569 80%, #334155 100%);
+  }
+
+  /* Section 9: Courses — gray-blue mix */
+  .section-slate-blue {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #2d3748 40%, #3c4657 80%, #2d3748 100%);
+  }
+
+  /* Section 10: Contact — charcoal gray dengan blue */
+  .section-graphite {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 40%, #2d3748 80%, #1f2937 100%);
+  }
+
+  /* ======================================
+     PARALLAX
+  ====================================== */
+
+  .parallax-container {
+    @apply relative overflow-hidden;
+  }
+
+  .parallax-bg {
+    position: absolute;
+    inset: -15%;
+    width: 130%;
+    height: 130%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  .parallax-overlay {
+    @apply absolute inset-0;
+  }
+
+  /* ======================================
+     SECTION HEADING VARIANTS
+  ====================================== */
+
+  /* Heading untuk dark sections */
+  .section-heading-light {
+    @apply text-white;
+  }
+
+  .section-subheading-light {
+    @apply text-white/60;
+  }
+
+  .section-divider-light {
+    @apply h-1 w-20 rounded-full mx-auto;
+    background: linear-gradient(90deg, #3b82f6, #94a3b8);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.7s ease-out forwards;
+  }
+  .animate-slide-in-left {
+    animation: slideInLeft 0.7s ease-out forwards;
+  }
+  .animate-slide-in-right {
+    animation: slideInRight 0.7s ease-out forwards;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  .animate-slide-down {
+    animation: slideDown 0.6s ease-out forwards;
+  }
+
+  .opacity-0-init {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
