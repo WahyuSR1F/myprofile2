@@ -19,7 +19,7 @@ export function ImageUpload({ value, onChange, bucket = 'portfolio-images', fold
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (!file) return;
+    if (!file || !supabase) return;
     setUploading(true);
     try {
       const ext = file.name.split('.').pop();
@@ -37,7 +37,7 @@ export function ImageUpload({ value, onChange, bucket = 'portfolio-images', fold
   }
 
   async function handleRemove() {
-    if (!value) return;
+    if (!value || !supabase) return;
     const path = value.split(`${bucket}/`)[1];
     if (path) await supabase.storage.from(bucket).remove([path]);
     onChange(null);
