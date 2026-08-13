@@ -162,7 +162,10 @@ async function main() {
     const values = rows.rows.map((r) => cols.map((c) => r[c] ?? null));
     await remote.execute(`DELETE FROM ${table}`);
     for (const row of values) {
-      await remote.execute(`INSERT INTO ${table} (${cols.join(', ')}) VALUES (${placeholders})`, row);
+      await remote.execute({
+        sql: `INSERT INTO ${table} (${cols.join(', ')}) VALUES (${placeholders})`,
+        args: row,
+      });
     }
     console.log(`  ${table}: ${values.length} rows`);
   }
