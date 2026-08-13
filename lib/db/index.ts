@@ -3,13 +3,16 @@ import { drizzle } from 'drizzle-orm/libsql';
 import * as schema from './schema';
 import path from 'path';
 
-// Database file: local.db di root project
-// Forward slashes required for libsql URL on Windows
+// Jika TURSO_DATABASE_URL di-set, pakai database remote (Turso/libsql).
+// Jika tidak, fallback ke file local.db di root project.
+const remoteUrl = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
+
 const dbPath = path.join(process.cwd(), 'local.db').replace(/\\/g, '/');
 
-const client = createClient({
-  url: `file:${dbPath}`,
-});
+const client = remoteUrl
+  ? createClient({ url: remoteUrl, authToken })
+  : createClient({ url: `file:${dbPath}` });
 
 export const db = drizzle(client, { schema });
 

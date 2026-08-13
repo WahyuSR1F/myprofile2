@@ -36,10 +36,10 @@ yarn-error.log*
 next-env.d.ts
 
 
-# SQLite local database
-local.db
-local.db-shm
+# SQLite local database (local.db di-commit agar tersedia saat deploy)
+# local.db-wal & local.db-shm tetap di-ignore (file sementara saat runtime)
 local.db-wal
+local.db-shm
 
 # Drizzle
 /lib/db/migrations
