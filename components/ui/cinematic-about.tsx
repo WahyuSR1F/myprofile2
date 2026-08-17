@@ -189,17 +189,17 @@ export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
           ═══════════════════════════════════════════════════ */}
       {/* Left half — big heading */}
       <div className="about-scene-split absolute inset-0 z-10 w-1/2 flex items-center justify-center px-6 lg:px-12 pointer-events-none">
-        <div className="text-center md:text-left">
+        <div className="text-right">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tighter text-slate-900 dark:text-white leading-[0.9]">
             Tentang
             <br />
             Saya
           </h2>
-          <div className="section-divider-light mt-4" />
+          <div className="section-divider-light mt-4 !mx-0 !ml-auto" />
         </div>
       </div>
       {/* Right half — bio teaser */}
-      <div className="about-scene-split absolute inset-0 z-10 w-1/2 flex items-center justify-center px-6 lg:px-12 pointer-events-none">
+      <div className="about-scene-split absolute inset-0 z-10 w-1/2 left-1/2 flex items-center justify-center px-6 lg:px-12 pointer-events-none">
         <div className="max-w-md">
           <p className="text-lg sm:text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
             {profile?.bio?.slice(0, 140) || 'Profesional multidisiplin dengan latar belakang kuat di bidang kesehatan masyarakat dan pengembangan teknologi.'}

@@ -13,6 +13,7 @@ import {
   SiJavascript, SiDrizzle, SiSqlite
 } from "react-icons/si";
 import { type Skill } from "@/lib/api";
+import { LogoCloud } from "@/components/ui/logo-cloud-2";
 
 const skillIconMap: Record<string, { Icon: React.ElementType; color: string }> = {
   "react":          { Icon: FaReact, color: "#61DAFB" },
@@ -82,7 +83,6 @@ export function StackFeatureSection({
   subtitle = "Technologies and tools I use to build modern applications",
 }: StackFeatureSectionProps) {
   const orbitCount = 3;
-  const orbitGap = 6;
 
   const enrichedSkills = useMemo(
     () =>
@@ -96,20 +96,32 @@ export function StackFeatureSection({
   const iconsPerOrbit = Math.ceil(enrichedSkills.length / orbitCount);
   const categories = Array.from(new Set(skills.map((s) => s.category)));
 
+  // Solar system config: orbit radii, speeds, and colors
+  const orbits = [
+    { radius: 4.5,  speed: 12, color: "rgba(250, 80, 15, 0.35)", glowColor: "rgba(250, 80, 15, 0.15)" },   // Mercury-like
+    { radius: 7,    speed: 18, color: "rgba(59, 130, 246, 0.3)", glowColor: "rgba(59, 130, 246, 0.12)" },  // Earth-like
+    { radius: 9.5,  speed: 26, color: "rgba(168, 85, 247, 0.25)", glowColor: "rgba(168, 85, 247, 0.1)" },  // Jupiter-like
+  ];
+
   return (
-    <section className="relative max-w-6xl mx-auto my-6 overflow-visible">
+    <section className="relative max-w-6xl mx-auto my-6">
       <div className="flex flex-col lg:flex-row items-stretch min-h-[20rem] lg:min-h-[24rem] overflow-visible">
-        {/* Left 1/4: Orbit animation */}
-        <div className="relative w-full lg:w-1/4 min-h-[16rem] lg:min-h-[24rem] flex items-center justify-center">
-          <div className="relative w-[20rem] h-[20rem] flex items-center justify-center">
-            {/* Center Circle */}
-            <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 shadow-lg flex items-center justify-center z-10">
-              <FaReact className="w-6 h-6 text-primary" />
+        {/* Left: Solar system orbit animation */}
+        <div className="relative w-full lg:w-1/3 min-h-[16rem] lg:min-h-[24rem] flex items-center justify-center overflow-hidden">
+          <div className="relative w-[14rem] h-[14rem] sm:w-[16rem] sm:h-[16rem] lg:w-[18rem] lg:h-[18rem] flex items-center justify-center">
+
+            {/* ── Sun (center) ── */}
+            <div className="relative z-10 flex items-center justify-center">
+              <div className="absolute w-16 h-16 rounded-full bg-primary/20 blur-xl animate-pulse" />
+              <div className="absolute w-10 h-10 rounded-full bg-primary/30 blur-md" />
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_rgba(250,80,15,0.5)] flex items-center justify-center z-10">
+                <FaReact className="w-6 h-6 text-white drop-shadow-md" />
+              </div>
             </div>
 
-            {/* Generate Orbits */}
-            {[...Array(orbitCount)].map((_, orbitIdx) => {
-              const size = `${8 + orbitGap * (orbitIdx + 1)}rem`;
+            {/* ── Orbit rings + planets ── */}
+            {orbits.map((orbit, orbitIdx) => {
+              const diameter = orbit.radius * 2;
               const orbitSkills = enrichedSkills.slice(
                 orbitIdx * iconsPerOrbit,
                 orbitIdx * iconsPerOrbit + iconsPerOrbit
@@ -117,50 +129,62 @@ export function StackFeatureSection({
               const angleStep = (2 * Math.PI) / Math.max(orbitSkills.length, 1);
 
               return (
+                /* Wrapper: centers the orbit at the middle of the container */
                 <div
                   key={orbitIdx}
-                  className="absolute rounded-full border-2 border-dotted border-border"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   style={{
-                    width: size,
-                    height: size,
-                    animation: `orbit-spin ${14 + orbitIdx * 5}s linear infinite`,
+                    width: `${diameter}rem`,
+                    height: `${diameter}rem`,
                   }}
                 >
-                  {orbitSkills.map((skill, iconIdx) => {
-                    const angle = iconIdx * angleStep;
-                    const x = 50 + 50 * Math.cos(angle);
-                    const y = 50 + 50 * Math.sin(angle);
+                  {/* Rotating track — planets are children so they orbit with it */}
+                  <div
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      border: `1.5px solid ${orbit.color}`,
+                      boxShadow: `0 0 8px ${orbit.glowColor}, inset 0 0 8px ${orbit.glowColor}`,
+                      animation: `orbit-spin ${orbit.speed}s linear infinite`,
+                    }}
+                  >
+                    {/* Planets on the ring edge — counter-spin keeps them upright */}
+                    {orbitSkills.map((skill, iconIdx) => {
+                      const angle = iconIdx * angleStep;
+                      const x = 50 + 50 * Math.cos(angle);
+                      const y = 50 + 50 * Math.sin(angle);
 
-                    return (
-                      <motion.div
-                        key={skill.id}
-                        className="absolute bg-card rounded-full p-1.5 shadow-md border border-border"
-                        style={{
-                          left: `${x}%`,
-                          top: `${y}%`,
-                          transform: "translate(-50%, -50%)",
-                          animation: `orbit-counter-spin ${14 + orbitIdx * 5}s linear infinite`,
-                        }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: orbitIdx * 0.2 + iconIdx * 0.05, duration: 0.4 }}
-                        title={skill.name}
-                      >
-                        <skill.Icon
-                          className="w-5 h-5 sm:w-6 sm:h-6"
-                          style={{ color: skill.color }}
-                        />
-                      </motion.div>
-                    );
-                  })}
+                      return (
+                        <motion.div
+                          key={skill.id}
+                          className="absolute bg-card/90 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-border/50 z-10"
+                          style={{
+                            left: `${x}%`,
+                            top: `${y}%`,
+                            transform: "translate(-50%, -50%)",
+                            animation: `orbit-counter-spin ${orbit.speed}s linear infinite`,
+                            boxShadow: `0 0 6px ${orbit.glowColor}`,
+                          }}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: orbitIdx * 0.3 + iconIdx * 0.08, duration: 0.5 }}
+                          title={skill.name}
+                        >
+                          <skill.Icon
+                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            style={{ color: skill.color }}
+                          />
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Right 3/4: Skill badges */}
-        <div className="w-full lg:w-3/4 p-5 sm:p-6 lg:pl-24">
+        {/* Right: Skill LogoCloud grid */}
+        <div className="w-full lg:w-2/3 min-w-0 p-5 sm:p-6 lg:pl-12">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -175,40 +199,17 @@ export function StackFeatureSection({
           </motion.div>
 
           <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
-            variants={container}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {categories.map((cat) => {
-              const catSkills = skills.filter((s) => s.category === cat);
-              return (
-                <motion.div key={cat} variants={item} className="p-3">
-                  <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                    <span className="w-1 h-4 bg-primary rounded-full" />
-                    {cat}
-                  </h3>
-                  <div className="space-y-2.5">
-                    {catSkills.map((skill) => (
-                      <div key={skill.id}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-medium text-foreground">{skill.name}</span>
-                          <span className="text-[10px] text-muted-foreground">{skill.proficiency}%</span>
-                        </div>
-                        <div className="h-1.5 rounded-full bg-border overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skill.proficiency}%` }}
-                            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              );
-            })}
+            <LogoCloud
+              items={enrichedSkills.map((s) => ({
+                name: s.name,
+                Icon: s.Icon,
+                color: s.color,
+              }))}
+            />
           </motion.div>
         </div>
       </div>
@@ -221,6 +222,10 @@ export function StackFeatureSection({
         @keyframes orbit-counter-spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes sun-pulse {
+          0%, 100% { box-shadow: 0 0 20px rgba(250, 80, 15, 0.5), 0 0 40px rgba(250, 80, 15, 0.2); }
+          50% { box-shadow: 0 0 30px rgba(250, 80, 15, 0.7), 0 0 60px rgba(250, 80, 15, 0.3); }
         }
         @media (prefers-reduced-motion: reduce) {
           * {
