@@ -1,7 +1,9 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { Profile } from "@/lib/supabase";
-import { AnimatedMarqueeHero } from "@/components/ui/hero-3";
+import { MinimalistHero } from "@/components/ui/minimalist-hero";
+import { Linkedin, Github, Twitter, Instagram } from "lucide-react";
 
 interface Props {
   profile: Profile | null;
@@ -19,19 +21,35 @@ const SHOWCASE_IMAGES = [
 ];
 
 export function Hero({ profile }: Props) {
+  const socials: { href: string; label: string; icon: ReactNode }[] = [];
+  if (profile?.linkedin_url) {
+    socials.push({ href: profile.linkedin_url, label: "LinkedIn", icon: <Linkedin className="h-4 w-4" /> });
+  }
+  if (profile?.github_url) {
+    socials.push({ href: profile.github_url, label: "GitHub", icon: <Github className="h-4 w-4" /> });
+  }
+  if (profile?.twitter_url) {
+    socials.push({ href: profile.twitter_url, label: "Twitter", icon: <Twitter className="h-4 w-4" /> });
+  }
+  if (profile?.instagram_url) {
+    socials.push({ href: profile.instagram_url, label: "Instagram", icon: <Instagram className="h-4 w-4" /> });
+  }
+
   return (
-    <AnimatedMarqueeHero
-      tagline={
-        profile?.title ?? "Fullstack Developer & DevOps Engineer"
-      }
+    <MinimalistHero
+      tagline={profile?.title ?? "Fullstack Developer & DevOps Engineer"}
       subtitle={profile?.tagline ?? undefined}
       title={profile?.name ?? "Wahyu Sahri Rhamadhan"}
       description={
-        profile?.bio ??
+        profile?.bio?.trim() ||
         "Spesialis dalam membangun aplikasi web modern dan solusi infrastruktur cloud yang scalable."
       }
       ctaText="Let's Work Together"
-      avatar="/images/profile/profile.png"
+      secondaryCtaText="View Projects"
+      secondaryCtaHref="#projects"
+      socials={socials}
+      availableForWork={profile?.available_for_work}
+      avatar={profile?.photo_url?.trim() ? profile.photo_url : "/images/profile/profile.png"}
       images={SHOWCASE_IMAGES}
     />
   );

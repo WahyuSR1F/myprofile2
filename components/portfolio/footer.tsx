@@ -12,21 +12,21 @@ export function Footer({ profile }: Props) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 py-10 border-t border-slate-800">
+    <footer className="bg-background py-10 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-display font-bold">
-            <HeartPulse className="h-5 w-5 text-blue-400" />
-            <span className="text-white">{name}</span>
+          <div className="flex items-center gap-2 font-display font-bold text-foreground">
+            <HeartPulse className="h-5 w-5 text-primary" />
+            <span>{name}</span>
           </div>
 
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-muted-foreground">
             &copy; {year} {name}. All rights reserved.
           </p>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition-colors text-white"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-md bg-card border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
           >
             <ArrowUp className="h-4 w-4" /> Back to top
           </button>

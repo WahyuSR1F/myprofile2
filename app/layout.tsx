@@ -1,12 +1,13 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Inter, Inter_Tight } from 'next/font/google';
 import { AuthProvider } from '@/lib/auth-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
+// Inter Tight — closer to Mistral's tight grotesque display font (ALTMistral)
+const interTight = Inter_Tight({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio.example.com';
 
@@ -78,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${interTight.variable} font-sans antialiased`}>
         <ThemeProvider>
           <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>

@@ -197,7 +197,7 @@ export function StackFeatureSection({
                         </div>
                         <div className="h-1.5 rounded-full bg-border overflow-hidden">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-sky-400 to-blue-600"
+                            className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
                             initial={{ width: 0 }}
                             animate={{ width: `${skill.proficiency}%` }}
                             transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.3 }}
@@ -221,6 +221,11 @@ export function StackFeatureSection({
         @keyframes orbit-counter-spin {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation: none !important;
+          }
         }
       `}</style>
     </section>

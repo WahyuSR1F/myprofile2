@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Project } from '@/lib/api';
 import { useInView } from '@/lib/use-in-view';
-import { ExternalLink, Github, Star, Eye } from 'lucide-react';
+import { Star, Eye } from 'lucide-react';
 import { ProjectCatalog } from '@/components/ui/project-catalog';
 
 interface Props {
@@ -15,20 +15,12 @@ export function Projects({ projects }: Props) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   if (projects.length === 0) return (
-    <section id="projects" className="bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 py-20 lg:py-28">
-      <div
-        className="absolute inset-0 w-full h-full"
-        style={{
-          backgroundImage: `url('/images/proyek/bg-projects.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          opacity: '0.15',
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-blue-50/80 to-sky-50/90" />
-      <div className="blob bg-blue-200 w-[400px] h-[400px] -top-20 right-1/4 opacity-30" />
-      <div className="blob bg-slate-200 w-[300px] h-[300px] bottom-0 left-10 opacity-30" style={{ animationDelay: '2s' }} />
+    <section id="projects" className="relative overflow-hidden scroll-mt-20 bg-[#0a0a0c] py-20 lg:py-28">
+      {/* Abstract animated orbs */}
+      <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.45), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
+      <div className="absolute top-1/3 -right-40 h-[420px] w-[420px] rounded-full opacity-25 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.4), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
+      <div className="absolute -bottom-48 left-1/4 h-[450px] w-[450px] rounded-full opacity-25 blur-[110px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.35) 0%, hsl(var(--accent) / 0.25) 50%, transparent 70%)", animation: "abstract-drift-3 22s ease-in-out infinite" }} />
+      <div className="noise-overlay absolute inset-0 opacity-[0.04] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
@@ -37,8 +29,8 @@ export function Projects({ projects }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-dark p-12 text-center">
-            <p className="font-medium text-white">Belum ada data proyek</p>
-            <p className="text-sm mt-1 text-slate-400">Tambahkan proyek melalui admin panel.</p>
+            <p className="font-medium text-white">No projects yet</p>
+            <p className="text-sm mt-1 text-slate-400">Add projects via the admin panel.</p>
           </div>
         </div>
       </div>
@@ -47,20 +39,12 @@ export function Projects({ projects }: Props) {
 
   return (
     <>
-      <section id="projects" className="bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 py-20 lg:py-28">
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            backgroundImage: `url('/images/proyek/bg-projects.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            opacity: '0.15',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-blue-50/80 to-sky-50/90" />
-        <div className="blob bg-blue-200 w-[400px] h-[400px] -top-20 right-1/4 opacity-30" />
-        <div className="blob bg-slate-200 w-[300px] h-[300px] bottom-0 left-10 opacity-30" style={{ animationDelay: '2s' }} />
+      <section id="projects" className="relative overflow-hidden scroll-mt-20 bg-[#0a0a0c] py-20 lg:py-28">
+        {/* Abstract animated orbs */}
+        <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.45), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
+        <div className="absolute top-1/3 -right-40 h-[420px] w-[420px] rounded-full opacity-25 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.4), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
+        <div className="absolute -bottom-48 left-1/4 h-[450px] w-[450px] rounded-full opacity-25 blur-[110px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.35) 0%, hsl(var(--accent) / 0.25) 50%, transparent 70%)", animation: "abstract-drift-3 22s ease-in-out infinite" }} />
+        <div className="noise-overlay absolute inset-0 opacity-[0.04] pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div ref={ref} className={`max-w-5xl mx-auto ${inView ? 'animate-fade-in-up' : 'opacity-0-init'}`}>
@@ -73,9 +57,18 @@ export function Projects({ projects }: Props) {
               {projects.map((project, i) => (
                 <div
                   key={project.id}
-                  className="glass-card-dark overflow-hidden animate-fade-in-up hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details for ${project.title}`}
+                  className="glass-card-dark overflow-hidden animate-fade-in-up cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   style={{ animationDelay: `${i * 150}ms`, opacity: 0 }}
                   onClick={() => setSelectedProject(project)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
                 >
                   {project.image_url ? (
                     <div className="aspect-video overflow-hidden relative">
@@ -89,8 +82,8 @@ export function Projects({ projects }: Props) {
                       </div>
                     </div>
                   ) : (
-                    <div className="aspect-video bg-gradient-to-br from-blue-800/40 via-sky-900/30 to-blue-900/40 flex items-center justify-center relative">
-                      <span className="font-display text-3xl font-bold text-slate-900/30">{project.title.charAt(0)}</span>
+                    <div className="aspect-video bg-gradient-to-br from-primary/20 via-primary/10 to-accent/15 flex items-center justify-center relative">
+                      <span className="font-display text-3xl font-bold text-white/20">{project.title.charAt(0)}</span>
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                         <Eye className="h-12 w-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
@@ -101,8 +94,8 @@ export function Projects({ projects }: Props) {
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="font-semibold text-lg text-white">{project.title}</h3>
                       {project.featured && (
-                        <span className="flex items-center gap-1 shrink-0 text-xs font-medium text-blue-600">
-                          <Star className="h-3 w-3 fill-blue-600" /> Featured
+                        <span className="flex items-center gap-1 shrink-0 text-xs font-medium text-primary">
+                          <Star className="h-3 w-3 fill-primary" /> Featured
                         </span>
                       )}
                     </div>
@@ -114,15 +107,15 @@ export function Projects({ projects }: Props) {
                     {project.tech_stack.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {project.tech_stack.map((tech) => (
-                          <span key={tech} className="px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-slate-200 border border-white/15">
+                          <span key={tech} className="px-2 py-1 rounded-md text-xs font-medium bg-muted text-foreground border border-border">
                             {tech}
                           </span>
                         ))}
                       </div>
                     )}
 
-                    <div className="flex items-center gap-2 text-sm text-blue-400 font-medium">
-                      <span>Lihat Katalog</span>
+                    <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                      <span>View Catalog</span>
                       <Eye className="h-4 w-4" />
                     </div>
                   </div>

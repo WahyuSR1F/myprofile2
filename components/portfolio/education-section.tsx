@@ -12,12 +12,12 @@ export function EducationSection({ education }: Props) {
   const { ref, inView } = useInView<HTMLDivElement>();
 
   if (education.length === 0) return (
-    <section id="education" className="bg-gradient-to-b from-white via-sky-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-20 lg:py-28">
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid-pattern pointer-events-none" />
-      {/* Accent blobs */}
-      <div className="blob bg-blue-800 w-[350px] h-[350px] -top-10 -right-10 opacity-20" />
-      <div className="blob bg-slate-700 w-[250px] h-[250px] bottom-10 left-10 opacity-20" style={{ animationDelay: '2s' }} />
+    <section id="education" className="relative overflow-hidden scroll-mt-20 bg-gradient-to-b from-[#faf9f6] via-[#f4f1ea] to-[#faf9f6] dark:from-[#0a0a0c] dark:via-[#101013] dark:to-[#0a0a0c] py-20 lg:py-28">
+      {/* Abstract animated orbs */}
+      <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.45), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
+      <div className="absolute top-1/3 -right-40 h-[420px] w-[420px] rounded-full opacity-25 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.4), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
+      <div className="absolute -bottom-48 left-1/4 h-[450px] w-[450px] rounded-full opacity-25 blur-[110px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.35) 0%, hsl(var(--accent) / 0.25) 50%, transparent 70%)", animation: "abstract-drift-3 22s ease-in-out infinite" }} />
+      <div className="noise-overlay absolute inset-0 opacity-[0.03] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto">
@@ -26,9 +26,9 @@ export function EducationSection({ education }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-light p-12 text-center">
-            <GraduationCap className="h-12 w-12 mx-auto mb-3 text-blue-300" />
-            <p className="font-medium text-slate-900 dark:text-white">Belum ada data pendidikan</p>
-            <p className="text-sm mt-1 text-slate-500 dark:text-slate-400">Tambahkan riwayat pendidikan melalui admin panel.</p>
+            <GraduationCap className="h-12 w-12 mx-auto mb-3 text-primary/50" />
+            <p className="font-medium text-slate-900 dark:text-white">No education history yet</p>
+            <p className="text-sm mt-1 text-slate-500 dark:text-slate-400">Add education via the admin panel.</p>
           </div>
         </div>
       </div>
@@ -36,12 +36,12 @@ export function EducationSection({ education }: Props) {
   );
 
   return (
-    <section id="education" className="bg-gradient-to-b from-white via-sky-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-20 lg:py-28">
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid-pattern pointer-events-none" />
-      {/* Accent blobs */}
-      <div className="blob bg-blue-800 w-[350px] h-[350px] -top-10 -right-10 opacity-20" />
-      <div className="blob bg-slate-700 w-[250px] h-[250px] bottom-10 left-10 opacity-20" style={{ animationDelay: '2s' }} />
+    <section id="education" className="relative overflow-hidden scroll-mt-20 bg-gradient-to-b from-[#faf9f6] via-[#f4f1ea] to-[#faf9f6] dark:from-[#0a0a0c] dark:via-[#101013] dark:to-[#0a0a0c] py-20 lg:py-28">
+      {/* Abstract animated orbs */}
+      <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.45), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
+      <div className="absolute top-1/3 -right-40 h-[420px] w-[420px] rounded-full opacity-25 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.4), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
+      <div className="absolute -bottom-48 left-1/4 h-[450px] w-[450px] rounded-full opacity-25 blur-[110px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.35) 0%, hsl(var(--accent) / 0.25) 50%, transparent 70%)", animation: "abstract-drift-3 22s ease-in-out infinite" }} />
+      <div className="noise-overlay absolute inset-0 opacity-[0.03] pointer-events-none" />
       {/* Subtle texture */}
       <div
         className="absolute inset-0 opacity-5"
@@ -63,15 +63,15 @@ export function EducationSection({ education }: Props) {
             {education.map((edu, i) => (
               <div
                 key={edu.id}
-                className="glass-card-light p-6 flex items-start gap-4 animate-fade-in-up hover:scale-[1.01] transition-all duration-300"
+                className="glass-card-light p-6 flex items-start gap-4 animate-fade-in-up"
                 style={{ animationDelay: `${i * 150}ms`, opacity: 0 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/15 dark:bg-blue-500/25 flex items-center justify-center shrink-0">
-                  <GraduationCap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center shrink-0">
+                  <GraduationCap className="h-6 w-6 text-primary" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg text-slate-900 dark:text-white">{edu.degree}</h3>
-                  <p className="text-blue-700 dark:text-blue-400 font-medium text-sm">{edu.institution}</p>
+                  <p className="text-primary font-medium text-sm">{edu.institution}</p>
                   {edu.field && <p className="text-sm text-slate-600 dark:text-slate-400">{edu.field}</p>}
                   <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 mt-1">
                     <Calendar className="h-3 w-3" />

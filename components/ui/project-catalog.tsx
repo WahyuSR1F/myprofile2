@@ -93,16 +93,16 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
     >
       <div
         ref={contentRef}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 rounded-3xl shadow-2xl"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#141417] rounded-3xl shadow-2xl"
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 rounded-t-3xl">
+        <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-white/80 dark:bg-[#141417]/80 backdrop-blur-lg border-b border-slate-200 dark:border-white/10 rounded-t-3xl">
           <div>
             <h2 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
               {project.title}
             </h2>
             {project.featured && (
-              <span className="inline-flex items-center gap-1 mt-1 text-xs font-medium text-blue-600 dark:text-blue-400">
+              <span className="inline-flex items-center gap-1 mt-1 text-xs font-medium text-primary">
                 ★ Featured Project
               </span>
             )}
@@ -131,7 +131,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           {/* Description */}
           <div className="catalog-section">
             <h3 className="font-display text-lg font-semibold mb-3 text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="w-1 h-5 bg-blue-600 rounded-full" />
+              <span className="w-1 h-5 bg-primary rounded-full" />
               Deskripsi Aplikasi
             </h3>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -143,14 +143,14 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           {project.tech_stack.length > 0 && (
             <div className="catalog-section">
               <h3 className="font-display text-lg font-semibold mb-3 text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="w-1 h-5 bg-blue-600 rounded-full" />
+                <span className="w-1 h-5 bg-primary rounded-full" />
                 Tech Stack
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech_stack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1.5 rounded-full text-sm font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+                    className="px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 dark:bg-primary/15 text-primary border border-primary/25"
                   >
                     {tech}
                   </span>
@@ -162,7 +162,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           {/* Target Customers */}
           <div className="catalog-section">
             <h3 className="font-display text-lg font-semibold mb-3 text-slate-900 dark:text-white flex items-center gap-2">
-              <Target className="h-5 w-5 text-blue-600" />
+              <Target className="h-5 w-5 text-primary" />
               Target Pelanggan
             </h3>
             <ul className="space-y-2">
@@ -178,13 +178,13 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           {/* Solutions */}
           <div className="catalog-section">
             <h3 className="font-display text-lg font-semibold mb-3 text-slate-900 dark:text-white flex items-center gap-2">
-              <Lightbulb className="h-5 w-5 text-blue-600" />
+              <Lightbulb className="h-5 w-5 text-primary" />
               Solusi yang Ditawarkan
             </h3>
             <ul className="space-y-2">
               {catalogData.solutions.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
-                  <ArrowRight className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                  <ArrowRight className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -194,7 +194,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           {/* Benefits */}
           <div className="catalog-section">
             <h3 className="font-display text-lg font-semibold mb-3 text-slate-900 dark:text-white flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-blue-600" />
+              <CheckCircle className="h-5 w-5 text-primary" />
               Benefit
             </h3>
             <ul className="space-y-2">
@@ -210,11 +210,11 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
           </div>
 
           {/* CTA Section */}
-          <div className="catalog-cta bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-center">
+          <div className="catalog-cta bg-gradient-to-r from-[#FA500F] via-[#FF8204] to-[#FFAF01] rounded-2xl p-6 text-center">
             <h3 className="font-display text-xl font-bold text-white mb-2">
               Tertarik dengan solusi ini?
             </h3>
-            <p className="text-blue-100 mb-4">
+            <p className="text-white/85 mb-4">
               Aplikasi bisnismu bisa jadi lebih baik. Saya siap membantu!
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -222,7 +222,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
                 href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20solusi%20{project.title}"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#B53A00] font-semibold rounded-xl hover:bg-white/90 transition-colors"
               >
                 Konfirmasi Sekarang
                 <ArrowRight className="h-4 w-4" />

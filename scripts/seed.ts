@@ -41,7 +41,7 @@ async function seed() {
     title:              'Full Stack Developer',
     tagline:            'Membangun solusi digital yang berdampak',
     bio:                'Saya adalah seorang Full Stack Developer dengan 5 tahun pengalaman membangun aplikasi web modern. Passionate tentang clean code, UX, dan teknologi terbaru.',
-    photo_url:          '/images/profile/photo.jpg',
+    photo_url:          '/images/profile/profile.png',
     email:              'budi.santoso@email.com',
     phone:              '+62 812-3456-7890',
     location:           'Jakarta, Indonesia',

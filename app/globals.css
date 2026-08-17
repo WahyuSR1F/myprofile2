@@ -4,66 +4,66 @@
 
 @layer base {
   :root {
-    --background: 210 60% 98%;
-    --foreground: 222 47% 11%;
+    --background: 40 33% 98%;
+    --foreground: 25 18% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 25 18% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 214 90% 56%;
+    --popover-foreground: 25 18% 12%;
+    --primary: 13 95% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 214 60% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 214 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 199 89% 48%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 35 40% 96%;
+    --secondary-foreground: 25 18% 12%;
+    --muted: 35 25% 95%;
+    --muted-foreground: 25 10% 45%;
+    --accent: 41 100% 50%;
+    --accent-foreground: 25 60% 10%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 214 32% 88%;
-    --input: 214 32% 88%;
-    --ring: 214 90% 56%;
-    --chart-1: 214 90% 56%;
-    --chart-2: 199 89% 48%;
-    --chart-3: 226 70% 55%;
-    --chart-4: 142 71% 45%;
-    --chart-5: 38 92% 50%;
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 13 95% 52%;
+    --chart-1: 13 95% 52%;
+    --chart-2: 41 100% 50%;
+    --chart-3: 43 99% 61%;
+    --chart-4: 217 95% 30%;
+    --chart-5: 0 84% 60%;
     --radius: 0.9rem;
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 214 90% 60%;
-    --primary-foreground: 222 47% 8%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 15%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 199 89% 52%;
-    --accent-foreground: 222 47% 8%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --background: 240 5% 4%;
+    --foreground: 45 30% 95%;
+    --card: 240 5% 8%;
+    --card-foreground: 45 30% 95%;
+    --popover: 240 5% 8%;
+    --popover-foreground: 45 30% 95%;
+    --primary: 13 95% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 10%;
+    --secondary-foreground: 45 30% 95%;
+    --muted: 240 4% 9%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 41 100% 50%;
+    --accent-foreground: 25 60% 10%;
+    --destructive: 0 63% 40%;
+    --destructive-foreground: 0 0% 98%;
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 214 90% 60%;
-    --chart-1: 214 90% 60%;
-    --chart-2: 199 89% 52%;
-    --chart-3: 226 70% 60%;
-    --chart-4: 142 71% 45%;
-    --chart-5: 38 92% 50%;
+    --border: 240 6% 16%;
+    --input: 240 6% 16%;
+    --ring: 13 95% 52%;
+    --chart-1: 13 95% 52%;
+    --chart-2: 41 100% 50%;
+    --chart-3: 43 99% 61%;
+    --chart-4: 217 95% 45%;
+    --chart-5: 0 84% 60%;
   }
 }
 
@@ -113,37 +113,42 @@
     box-shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
   }
 
-  .glass-card-light {
-    @apply bg-white/90 backdrop-blur-lg border border-sky-100 rounded-2xl;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  }
-
-  .glass-card-light:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px rgba(59, 130, 246, 0.12);
-    background-color: rgba(255, 255, 255, 0.96);
-  }
-
-  .dark .glass-card-light {
-    @apply bg-slate-900/90 border-slate-800;
-  }
-
-  .dark .glass-card-light:hover {
-    background-color: rgba(30, 41, 59, 0.95);
-    box-shadow: 0 18px 36px rgba(2, 6, 23, 0.4);
-  }
-
-  /* Glass card dark variant for dark sections */
+  .glass-card-light,
   .glass-card-dark {
-    @apply bg-white/10 backdrop-blur-lg rounded-2xl;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    @apply bg-card border border-border rounded-2xl;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease;
   }
 
+  /* Mistral-style hover: subtle lift + layered soft shadow + primary border tint */
+  .glass-card-light:hover,
   .glass-card-dark:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 2px 4px rgba(21, 21, 31, 0.06), 0 8px 24px rgba(21, 21, 31, 0.08), 0 0 1px rgba(21, 21, 31, 0.12);
+  }
+
+  .dark .glass-card-light:hover,
+  .dark .glass-card-dark:hover {
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Mistral-style buttons — compact, rounded-md, flat (from mistral.ai: h-10 px-3, bg-action-primary, rounded-md) */
+  .btn-mistral-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-primary px-4 h-10 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-mistral-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-border px-4 h-10 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Mistral navbar shadow — very subtle, layered (from mistral.ai) */
+  .shadow-mistral-nav {
+    box-shadow: 0 4px 8px rgba(21, 21, 31, 0.03), 0 2px 4px rgba(21, 21, 31, 0.03), 0 1px 2px rgba(21, 21, 31, 0.03), 0 0 1px rgba(21, 21, 31, 0.06);
+  }
+
+  .dark .shadow-mistral-nav {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28), 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.16), 0 0 1px rgba(0, 0, 0, 0.32);
   }
 
   .gradient-text {
@@ -270,11 +275,23 @@
 
   .section-divider-light {
     @apply h-1 w-20 rounded-full mx-auto;
-    background: linear-gradient(90deg, #3b82f6, #94a3b8);
+    background: linear-gradient(90deg, #FA500F, #FFAF01);
   }
 }
 
 @layer utilities {
+  .text-gradient-mistral {
+    background: linear-gradient(90deg, #FA500F, #FF8204, #FFAF01);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
@@ -335,6 +352,32 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes abstract-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, -60px) scale(1.05); }
+  50% { transform: translate(-40px, 40px) scale(0.95); }
+  75% { transform: translate(60px, 20px) scale(1.02); }
+}
+
+@keyframes abstract-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-60px, 80px) scale(0.95); }
+  50% { transform: translate(50px, -30px) scale(1.08); }
+  75% { transform: translate(-30px, -60px) scale(1); }
+}
+
+@keyframes abstract-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, 50px) scale(1.03); }
+  50% { transform: translate(-70px, -20px) scale(0.97); }
+  75% { transform: translate(20px, -70px) scale(1.05); }
+}
+
+@keyframes abstract-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
 }
 
 @keyframes blob {
