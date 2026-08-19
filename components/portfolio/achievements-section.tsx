@@ -47,9 +47,9 @@ export function AchievementsSection({ achievements }: Props) {
 
   return (
     <section id="achievements" className="relative overflow-hidden scroll-mt-20 bg-gradient-to-b from-[#faf9f6] via-[#f4f1ea] to-[#faf9f6] dark:from-[#0a0a0c] dark:via-[#101013] dark:to-[#0a0a0c] py-16 md:py-32">
-      {/* Abstract animated orbs */}
-      <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-30 blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.45), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
-      <div className="absolute top-1/3 -right-40 h-[420px] w-[420px] rounded-full opacity-25 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.4), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
+      {/* Abstract animated orbs — inside, no negative positions */}
+      <div className="absolute top-10 left-10 h-[400px] w-[400px] rounded-full opacity-20 blur-[100px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.4), transparent 70%)", animation: "abstract-drift-1 20s ease-in-out infinite" }} />
+      <div className="absolute top-1/3 right-10 h-[350px] w-[350px] rounded-full opacity-15 blur-[80px] pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--accent) / 0.35), transparent 70%)", animation: "abstract-drift-2 24s ease-in-out infinite" }} />
       <div className="noise-overlay absolute inset-0 opacity-[0.03] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl space-y-8 px-6 md:space-y-16 relative z-10">
@@ -63,12 +63,12 @@ export function AchievementsSection({ achievements }: Props) {
           </p>
         </div>
 
-        {/* Card Grid - Testimonials style */}
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">
+        {/* Card Grid - responsive */}
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">
           {/* First achievement - large card with image */}
-          <Card className="grid grid-rows-[auto_auto_1fr] gap-4 sm:col-span-2 sm:p-6 lg:row-span-2 bg-white dark:bg-white/5 border-border/50 overflow-hidden">
+          <Card className="grid grid-rows-[auto_auto_1fr] gap-4 sm:col-span-2 sm:p-4 md:p-6 lg:row-span-2 bg-white dark:bg-white/5 border-border/50 overflow-hidden">
             {first.image_url ? (
-              <div className="relative h-48 sm:h-56 overflow-hidden rounded-t-lg -mx-6 -mt-6 sm:-mx-6 sm:-mt-6">
+              <div className="relative h-40 sm:h-56 overflow-hidden rounded-t-lg -mx-4 -mt-4 sm:-mx-6 sm:-mt-6">
                 <img
                   src={first.image_url}
                   alt={first.title}

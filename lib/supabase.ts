@@ -36,6 +36,7 @@ export type Experience = {
   description: string | null;
   achievements: string[];
   location: string | null;
+  image_url: string | null;
   sort_order: number;
   created_at: string;
   updated_at: string;

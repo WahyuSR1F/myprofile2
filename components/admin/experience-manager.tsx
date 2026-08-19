@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
+import { ImageUpload } from '@/components/ui/image-upload';
 import { Plus, Trash2, Pencil, X, Loader2, GripVertical } from 'lucide-react';
 
 export function ExperienceManager() {
@@ -77,7 +78,7 @@ function ExperienceForm({ item, onClose, onSaved }: { item: Experience | null; o
   const [form, setForm] = useState({
     company: item?.company ?? '', position: item?.position ?? '', start_date: item?.start_date ?? '', end_date: item?.end_date ?? '',
     current: item?.current ?? false, description: item?.description ?? '', achievements: (item?.achievements ?? []).join('\n'),
-    location: item?.location ?? '', sort_order: item?.sort_order ?? 0,
+    location: item?.location ?? '', image_url: item?.image_url ?? null, sort_order: item?.sort_order ?? 0,
   });
 
   async function handleSave() {
@@ -94,6 +95,7 @@ function ExperienceForm({ item, onClose, onSaved }: { item: Experience | null; o
   return (
     <div className="rounded-xl border border-primary/30 bg-card p-6 space-y-4">
       <div className="flex items-center justify-between"><h3 className="font-semibold">{item ? 'Edit Experience' : 'New Experience'}</h3><Button size="icon" variant="ghost" onClick={onClose}><X className="h-4 w-4" /></Button></div>
+      <div className="space-y-2"><Label>Company Image</Label><ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="experiences" /></div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2"><Label>Company</Label><Input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} /></div>
         <div className="space-y-2"><Label>Position</Label><Input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} /></div>

@@ -47,6 +47,7 @@ export const protofolioExperiences = sqliteTable('protofolio_experiences', {
   // Stored as JSON array string e.g. '["achievement1","achievement2"]'
   achievements: text('achievements').default('[]'),
   location: text('location'),
+  image_url: text('image_url'),
   sort_order: integer('sort_order').default(0),
   ...timestamps,
 });

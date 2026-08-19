@@ -60,8 +60,9 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
   // "Wahyu Sahri" / "Rhamadhan"
   const nameStr = typeof title === "string" ? title : "Wahyu Sahri Rhamadhan";
   const nameParts = nameStr.trim().split(/\s+/).filter(Boolean);
-  const overlayPart1 = nameParts.slice(0, -1).join(" ") || nameStr;
-  const overlayPart2 = nameParts[nameParts.length - 1] ?? "";
+  const overlayPart1 = nameParts[0] ?? nameStr;
+  const overlayPart2 = nameParts[1] ?? "";
+  const overlayPart3 = nameParts.slice(2).join(" ") || "";
   const locationText = subtitle ?? tagline;
 
   // ---- Seamless brand marquee ----
@@ -170,7 +171,7 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
               className="z-20 order-2 md:order-1 text-center md:text-left"
             >
               {availableForWork && (
-                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-sm font-medium text-muted-foreground">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-success opacity-60 motion-safe:animate-ping" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
@@ -178,7 +179,7 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
                   Available for work
                 </span>
               )}
-              <p className="mx-auto max-w-sm text-sm leading-relaxed text-muted-foreground md:mx-0">
+              <p className="mx-auto max-w-sm text-base leading-relaxed text-muted-foreground md:mx-0">
                 {description}
               </p>
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
@@ -227,6 +228,12 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
                 {overlayPart1}
                 <br />
                 {overlayPart2}
+                {overlayPart3 && (
+                  <>
+                    <br />
+                    {overlayPart3}
+                  </>
+                )}
               </h1>
             </motion.div>
           </div>

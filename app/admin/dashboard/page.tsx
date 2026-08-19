@@ -12,9 +12,10 @@ import { MessageInbox } from '@/components/admin/message-inbox';
 import { SettingsManager } from '@/components/admin/settings-manager';
 import { AchievementManager } from '@/components/admin/achievement-manager';
 import { CourseManager } from '@/components/admin/course-manager';
+import { CertificateManager } from '@/components/admin/certificate-manager';
 import { Menu, X, HeartPulse } from 'lucide-react';
 
-type Tab = 'profile' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'courses' | 'messages' | 'settings';
+type Tab = 'profile' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'messages' | 'settings';
 
 export default function AdminDashboardPage() {
   const [tab, setTab] = useState<Tab>('profile');
@@ -45,6 +46,7 @@ export default function AdminDashboardPage() {
     { id: 'projects', label: 'Projects' },
     { id: 'education', label: 'Education' },
     { id: 'achievements', label: 'Achievements' },
+    { id: 'certificates', label: 'Certificates' },
     { id: 'courses', label: 'Courses' },
     { id: 'messages', label: 'Messages', badge: messages.filter((m) => !m.is_read).length },
     { id: 'settings', label: 'Settings' },
@@ -101,6 +103,7 @@ export default function AdminDashboardPage() {
             {tab === 'projects' && <ProjectManager />}
             {tab === 'education' && <EducationManager />}
             {tab === 'achievements' && <AchievementManager />}
+            {tab === 'certificates' && <CertificateManager />}
             {tab === 'courses' && <CourseManager />}
             {tab === 'messages' && <MessageInbox messages={messages} onUpdate={loadData} />}
             {tab === 'settings' && <SettingsManager settings={settings} onUpdate={loadData} />}

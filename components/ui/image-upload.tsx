@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Loader2, Upload, X } from 'lucide-react';
 
@@ -13,33 +12,36 @@ interface Props {
   label?: string;
 }
 
-export function ImageUpload({ value, onChange, bucket = 'portfolio-images', folder = 'general', label = 'Image' }: Props) {
+export function ImageUpload({ value, onChange, folder = 'general' }: Props) {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (!file || !supabase) return;
+    if (!file) return;
     setUploading(true);
     try {
-      const ext = file.name.split('.').pop();
-      const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { error } = await supabase.storage.from(bucket).upload(path, file);
-      if (error) throw error;
-      const { data: publicUrl } = supabase.storage.from(bucket).getPublicUrl(path);
-      onChange(publicUrl.publicUrl);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('folder', folder);
+
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Upload failed');
+      }
+      const { url } = await res.json();
+      onChange(url);
     } catch (e) {
       console.error('Upload error:', e);
+      alert((e as Error).message);
     } finally {
       setUploading(false);
       if (inputRef.current) inputRef.current.value = '';
     }
   }
 
-  async function handleRemove() {
-    if (!value || !supabase) return;
-    const path = value.split(`${bucket}/`)[1];
-    if (path) await supabase.storage.from(bucket).remove([path]);
+  function handleRemove() {
     onChange(null);
   }
 
