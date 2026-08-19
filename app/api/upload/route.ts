@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,22 +22,44 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'File too large. Max 5MB' }, { status: 400 });
     }
 
-    // Create upload directory
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', folder);
-    await mkdir(uploadDir, { recursive: true });
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    // If Supabase is not configured, fallback to base64 data URL
+    if (!supabaseUrl || !serviceRoleKey) {
+      const bytes = await file.arrayBuffer();
+      const base64 = Buffer.from(bytes).toString('base64');
+      const mimeType = file.type;
+      const url = `data:${mimeType};base64,${base64}`;
+      return NextResponse.json({ url });
+    }
+
+    // Create admin client with service role key
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     // Generate filename
     const ext = file.name.split('.').pop() || 'jpg';
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    const filepath = path.join(uploadDir, filename);
+    const filename = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-    // Write file
+    // Upload to Supabase Storage
     const bytes = await file.arrayBuffer();
-    await writeFile(filepath, Buffer.from(bytes));
+    const { data, error } = await supabase.storage
+      .from('uploads')
+      .upload(filename, bytes, {
+        contentType: file.type,
+        upsert: false,
+      });
 
-    // Return public URL
-    const url = `/uploads/${folder}/${filename}`;
-    return NextResponse.json({ url });
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Get public URL
+    const { data: urlData } = supabase.storage
+      .from('uploads')
+      .getPublicUrl(data.path);
+
+    return NextResponse.json({ url: urlData.publicUrl });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 500 });
   }
