@@ -225,6 +225,21 @@ async function migrate() {
       await client.execute(stmt);
     }
 
+    // ── Add new columns to protofolio_profiles if missing ──
+    const alterCols = [
+      "ALTER TABLE protofolio_profiles ADD COLUMN motivasi TEXT",
+      "ALTER TABLE protofolio_profiles ADD COLUMN keterangan_pengalaman TEXT",
+      "ALTER TABLE protofolio_profiles ADD COLUMN about_highlights TEXT DEFAULT '[]'",
+      "ALTER TABLE protofolio_profiles ADD COLUMN about_stats TEXT DEFAULT '[]'",
+    ];
+    for (const stmt of alterCols) {
+      try {
+        await client.execute(stmt);
+      } catch {
+        // Column may already exist — ignore
+      }
+    }
+
     // Verify tables
     const result = await client.execute(
       "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"

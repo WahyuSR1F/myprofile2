@@ -18,18 +18,45 @@ interface CinematicAboutProps {
 export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const highlights = [
+  // Parse dynamic highlights from profile, fallback to defaults
+  const defaultHighlights = [
     { icon: Target, title: 'Problem Solver', desc: 'Mengidentifikasi dan menyelesaikan tantangan teknis & non-teknis dengan solusi inovatif.' },
     { icon: Lightbulb, title: 'Inovator', desc: 'Menerapkan teknologi terkini untuk mengoptimalkan proses kerja dan produktivitas.' },
     { icon: CheckCircle, title: 'Results-Driven', desc: 'Berorientasi pada hasil dengan pencapaian target dan peningkatan performa konsisten.' },
   ];
-
-  const stats = [
-    { icon: Briefcase, label: 'Pengalaman', value: '3+ Tahun' },
-    { icon: Award, label: 'Sertifikasi', value: '5+' },
-    { icon: Users, label: 'Tim Dipimpin', value: '10+' },
-    { icon: GraduationCap, label: 'Pendidikan', value: 'S.K.M' },
+  const defaultStats = [
+    { label: 'Pengalaman', value: '3+ Tahun' },
+    { label: 'Sertifikasi', value: '5+' },
+    { label: 'Tim Dipimpin', value: '10+' },
+    { label: 'Pendidikan', value: 'S.K.M' },
   ];
+
+  const iconMap: Record<string, typeof Target> = { Target, Lightbulb, CheckCircle, Award, Briefcase, Users, GraduationCap };
+  const statIcons = [Briefcase, Award, Users, GraduationCap];
+
+  let parsedHighlights: { icon: typeof Target; title: string; desc: string }[] = defaultHighlights;
+  try {
+    if (profile?.about_highlights) {
+      const arr = JSON.parse(profile.about_highlights);
+      if (Array.isArray(arr)) {
+        parsedHighlights = arr.map((h: { icon?: string; title?: string; desc?: string }) => ({
+          icon: (iconMap[h.icon ?? ''] ?? Target) as typeof Target,
+          title: h.title ?? '',
+          desc: h.desc ?? '',
+        }));
+      }
+    }
+  } catch {}
+  const highlights = parsedHighlights;
+
+  let parsedStats: { label: string; value: string }[] = defaultStats;
+  try {
+    if (profile?.about_stats) {
+      const arr = JSON.parse(profile.about_stats);
+      if (Array.isArray(arr)) parsedStats = arr;
+    }
+  } catch {}
+  const stats = parsedStats.map((s, i) => ({ ...s, icon: statIcons[i % statIcons.length] }));
 
   const grouped = skills.reduce<Record<string, Skill[]>>((acc, s) => {
     const cat = s.category || 'Lainnya';
@@ -225,7 +252,7 @@ export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
             {profile?.bio?.slice(0, 160) || 'Profesional multidisiplin dengan latar belakang kuat di bidang kesehatan masyarakat dan pengembangan teknologi.'}
           </h3>
           <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            {profile?.tagline || 'Memadukan keahlian di bidang kesehatan dan teknologi untuk menciptakan inovasi yang relevan.'}
+            {profile?.motivasi || profile?.tagline || 'Memadukan keahlian di bidang kesehatan dan teknologi untuk menciptakan inovasi yang relevan.'}
           </p>
         </div>
       </div>

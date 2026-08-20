@@ -67,6 +67,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  other: {
+    'google-site-verification': 'ZcJRGcqiTkJSJAQimCPSGgLe5j_8adDJ0ULjLX5FfDU',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

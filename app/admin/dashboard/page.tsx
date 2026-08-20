@@ -13,9 +13,10 @@ import { SettingsManager } from '@/components/admin/settings-manager';
 import { AchievementManager } from '@/components/admin/achievement-manager';
 import { CourseManager } from '@/components/admin/course-manager';
 import { CertificateManager } from '@/components/admin/certificate-manager';
+import { AboutEditor } from '@/components/admin/about-editor';
 import { Menu, X, HeartPulse } from 'lucide-react';
 
-type Tab = 'profile' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'messages' | 'settings';
+type Tab = 'profile' | 'about' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'messages' | 'settings';
 
 export default function AdminDashboardPage() {
   const [tab, setTab] = useState<Tab>('profile');
@@ -41,6 +42,7 @@ export default function AdminDashboardPage() {
 
   const tabs: { id: Tab; label: string; badge?: number }[] = [
     { id: 'profile', label: 'Profile' },
+    { id: 'about', label: 'Tentang Saya' },
     { id: 'experiences', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
@@ -98,6 +100,7 @@ export default function AdminDashboardPage() {
         <main className="flex-1 lg:ml-64">
           <div className="p-4 sm:p-6 lg:p-8">
             {tab === 'profile' && <ProfileEditor profile={profile} onUpdate={loadData} />}
+            {tab === 'about' && <AboutEditor profile={profile} onUpdate={loadData} />}
             {tab === 'experiences' && <ExperienceManager />}
             {tab === 'skills' && <SkillManager />}
             {tab === 'projects' && <ProjectManager />}

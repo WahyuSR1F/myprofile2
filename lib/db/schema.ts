@@ -33,6 +33,10 @@ export const protofolioProfiles = sqliteTable('protofolio_profiles', {
   instagram_url: text('instagram_url'),
   cv_url: text('cv_url'),
   available_for_work: integer('available_for_work', { mode: 'boolean' }).default(false),
+  motivasi: text('motivasi'),
+  keterangan_pengalaman: text('keterangan_pengalaman'),
+  about_highlights: text('about_highlights').default('[]'),
+  about_stats: text('about_stats').default('[]'),
   ...timestamps,
 });
 

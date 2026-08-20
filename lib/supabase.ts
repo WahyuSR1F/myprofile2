@@ -22,6 +22,10 @@ export type Profile = {
   instagram_url: string | null;
   cv_url: string | null;
   available_for_work: boolean;
+  motivasi: string | null;
+  keterangan_pengalaman: string | null;
+  about_highlights: string | null;
+  about_stats: string | null;
   created_at: string;
   updated_at: string;
 };
