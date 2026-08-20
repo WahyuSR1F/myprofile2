@@ -28,6 +28,8 @@ const tables = [
     tagline TEXT, bio TEXT, photo_url TEXT, email TEXT, phone TEXT, location TEXT,
     website TEXT, linkedin_url TEXT, github_url TEXT, twitter_url TEXT, instagram_url TEXT,
     cv_url TEXT, available_for_work INTEGER DEFAULT 0,
+    motivasi TEXT, keterangan_pengalaman TEXT,
+    about_highlights TEXT DEFAULT '[]', about_stats TEXT DEFAULT '[]',
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   )`,
@@ -144,10 +146,26 @@ const copyOrder = [
   'sipd_notifications',
 ];
 
+const alterCols = [
+  "ALTER TABLE protofolio_profiles ADD COLUMN motivasi TEXT",
+  "ALTER TABLE protofolio_profiles ADD COLUMN keterangan_pengalaman TEXT",
+  "ALTER TABLE protofolio_profiles ADD COLUMN about_highlights TEXT DEFAULT '[]'",
+  "ALTER TABLE protofolio_profiles ADD COLUMN about_stats TEXT DEFAULT '[]'",
+];
+
 async function main() {
   console.log('🔄 Membuat tabel di Turso...');
   for (const stmt of tables) {
     await remote.execute(stmt);
+  }
+
+  console.log('🔄 Menambahkan kolom baru jika belum ada...');
+  for (const stmt of alterCols) {
+    try {
+      await remote.execute(stmt);
+    } catch {
+      // Column may already exist
+    }
   }
 
   console.log('📊 Menyalin data local.db -> Turso...');
