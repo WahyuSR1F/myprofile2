@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Profile, Skill } from "@/lib/supabase";
@@ -15,8 +15,21 @@ interface CinematicAboutProps {
   skills: Skill[];
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+  return isMobile;
+}
+
 export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // Parse dynamic highlights from profile, fallback to defaults
   const defaultHighlights = [
@@ -71,7 +84,10 @@ export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
     'Kesehatan Masyarakat': Stethoscope,
   };
 
+  // ── GSAP pinned animation (desktop only) ──
   useEffect(() => {
+    if (isMobile) return; // Skip GSAP pin on mobile
+
     const ctx = gsap.context(() => {
       // ── Scene refs ──
       const sceneSplit = gsap.utils.toArray<HTMLElement>(".about-scene-split");
@@ -188,11 +204,11 @@ export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [skills]);
+  }, [skills, isMobile]);
 
-  return (
-    <section id="about" ref={containerRef} className="relative w-full h-screen overflow-hidden scroll-mt-20 bg-[#faf9f6] dark:bg-[#0a0a0c]">
-      {/* ── Abstract animated background ── */}
+  // ── Background layer (shared by both layouts) ──
+  const backgroundLayer = (
+    <>
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#faf9f6] via-[#f4f1ea] to-[#faf9f6] dark:from-[#0a0a0c] dark:via-[#101013] dark:to-[#0a0a0c]" />
         <div
@@ -210,6 +226,102 @@ export function CinematicAbout({ profile, skills }: CinematicAboutProps) {
         <div className="noise-overlay absolute inset-0 opacity-[0.03]" />
       </div>
       <div className="absolute inset-0 grid-pattern pointer-events-none z-[1] opacity-40" />
+    </>
+  );
+
+  // ══════════════════════════════════════════════════════════
+  // MOBILE LAYOUT — normal scrollable section, no GSAP pin
+  // ══════════════════════════════════════════════════════════
+  if (isMobile) {
+    return (
+      <section id="about" className="relative w-full overflow-hidden scroll-mt-20 bg-[#faf9f6] dark:bg-[#0a0a0c] py-16 px-4">
+        {backgroundLayer}
+
+        <div className="relative z-10 max-w-3xl mx-auto space-y-12">
+          {/* ── Heading ── */}
+          <div className="text-center">
+            <h2 className="font-display text-3xl font-extrabold tracking-tighter text-slate-900 dark:text-white leading-[0.9]">
+              Tentang Saya
+            </h2>
+            <div className="section-divider-light mt-4 mx-auto" />
+            <p className="text-base font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-6">
+              {profile?.bio?.slice(0, 160) || 'Profesional multidisiplin dengan latar belakang kuat di bidang kesehatan masyarakat dan pengembangan teknologi.'}
+            </p>
+            <p className="text-sm text-muted-foreground mt-3">
+              {profile?.motivasi || profile?.tagline || 'Memadukan keahlian di bidang kesehatan dan teknologi untuk menciptakan inovasi yang relevan.'}
+            </p>
+          </div>
+
+          {/* ── Highlight Cards ── */}
+          <div className="space-y-4">
+            {highlights.map((item) => (
+              <div key={item.title} className="glass-card-light p-5">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center mb-3">
+                  <item.icon className="h-5 w-5 text-primary" />
+                </div>
+                <h4 className="font-semibold text-base mb-1 text-slate-900 dark:text-white">{item.title}</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* ── Skills ── */}
+          <div className="glass-card-light p-5">
+            <h3 className="font-display text-lg font-semibold mb-4 flex items-center gap-2 text-slate-900 dark:text-white">
+              <Award className="h-5 w-5 text-primary" />
+              Kompetensi Utama
+            </h3>
+            <div className="space-y-4">
+              {Object.entries(grouped).map(([category, catSkills]) => {
+                const Icon = categoryIcons[category] || Code2;
+                return (
+                  <div key={category}>
+                    <h4 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-2">
+                      <Icon className="h-3.5 w-3.5 text-primary" />
+                      {category}
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {catSkills.map((skill) => (
+                        <span
+                          key={skill.id}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary dark:bg-primary/15 dark:text-primary border border-primary/25"
+                        >
+                          {skill.icon && <img src={skill.icon} alt="" className="h-3.5 w-3.5" />}
+                          {skill.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── Stats (Pengalaman) ── */}
+          <div className="grid grid-cols-2 gap-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="glass-card-light p-4 text-center">
+                <div className="flex justify-center mb-2">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center">
+                    <stat.icon className="h-5.5 w-5.5 text-primary" />
+                  </div>
+                </div>
+                <div className="font-display text-2xl font-bold text-primary">{stat.value}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // DESKTOP LAYOUT — cinematic GSAP pinned scroll
+  // ══════════════════════════════════════════════════════════
+  return (
+    <section id="about" ref={containerRef} className="relative w-full h-screen overflow-hidden scroll-mt-20 bg-[#faf9f6] dark:bg-[#0a0a0c]">
+      {backgroundLayer}
 
       {/* ═══════════════════════════════════════════════════
           SCENE 1: Split Layout (Mistral-style)
