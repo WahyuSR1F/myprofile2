@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import {
   profileApi, experiencesApi, skillsApi, projectsApi,
-  educationApi, settingsApi, certificatesApi, achievementsApi, coursesApi
+  educationApi, settingsApi, certificatesApi, achievementsApi, coursesApi, servicesApi
 } from '@/lib/api';
-import type { Profile, Experience, Skill, Project, Education, Setting, Certificate, Achievement, Course } from '@/lib/api';
+import type { Profile, Experience, Skill, Project, Education, Setting, Certificate, Achievement, Course, Service } from '@/lib/api';
 import { Navbar } from '@/components/portfolio/navbar';
 import { Hero } from '@/components/portfolio/hero';
 import { About } from '@/components/portfolio/about';
@@ -17,6 +17,7 @@ import { CertificatesSection } from '@/components/portfolio/certificates-section
 import { AchievementsSection } from '@/components/portfolio/achievements-section';
 import { CoursesSection } from '@/components/portfolio/courses-section';
 import { Contact } from '@/components/portfolio/contact';
+import { ServicesSection } from '@/components/portfolio/services-section';
 import { Footer } from '@/components/portfolio/footer';
 import { Loader2 } from 'lucide-react';
 
@@ -30,11 +31,12 @@ export default function Home() {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
   const [settings, setSettings] = useState<Setting[]>([]);
 
   useEffect(() => {
     async function load() {
-      const [p, e, s, pr, ed, cert, ach, crs, st] = await Promise.all([
+      const [p, e, s, pr, ed, cert, ach, crs, sv, st] = await Promise.all([
         profileApi.get(),
         experiencesApi.list(),
         skillsApi.list(),
@@ -43,6 +45,7 @@ export default function Home() {
         certificatesApi.list(),
         achievementsApi.list(),
         coursesApi.list(),
+        servicesApi.list(),
         settingsApi.list(),
       ]);
 
@@ -54,6 +57,7 @@ export default function Home() {
       setCertificates(cert);
       setAchievements(ach);
       setCourses(crs);
+      setServices(sv);
       setSettings(st);
       setLoading(false);
     }
@@ -100,6 +104,7 @@ export default function Home() {
         {getSetting('show_skills') && <Skills skills={skills} />}
         {getSetting('show_projects') && <Projects projects={projects} />}
         {getSetting('show_education') && <EducationSection education={education} />}
+        {getSetting('show_services') && <ServicesSection services={services} />}
         {getSetting('show_certificates') && <CertificatesSection certificates={certificates} />}
         {getSetting('show_achievements') && <AchievementsSection achievements={achievements} />}
         {getSetting('show_courses') && <CoursesSection courses={courses} />}

@@ -143,6 +143,18 @@ export const protofolioCourses = sqliteTable('protofolio_courses', {
   ...timestamps,
 });
 
+export const protofolioServices = sqliteTable('protofolio_services', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  // 'target' | 'solusi' | 'benefit'
+  group: text('grp').notNull().default('solusi'),
+  title: text('title').notNull(),
+  description: text('description'),
+  icon: text('icon'),
+  image_url: text('image_url'),
+  sort_order: integer('sort_order').default(0),
+  ...timestamps,
+});
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // SIPD TABLES (Sistem Informasi Persetujuan Dokumen)
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -237,6 +249,9 @@ export type NewPortfolioAchievement = typeof protofolioAchievements.$inferInsert
 
 export type PortfolioCourse = typeof protofolioCourses.$inferSelect;
 export type NewPortfolioCourse = typeof protofolioCourses.$inferInsert;
+
+export type PortfolioService = typeof protofolioServices.$inferSelect;
+export type NewPortfolioService = typeof protofolioServices.$inferInsert;
 
 export type SipdProfile = typeof sipdProfiles.$inferSelect;
 export type NewSipdProfile = typeof sipdProfiles.$inferInsert;

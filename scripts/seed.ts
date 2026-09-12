@@ -31,8 +31,9 @@ async function seed() {
     { key: 'show_certificates', value: 'true' },
     { key: 'show_achievements', value: 'true' },
     { key: 'show_courses',      value: 'true' },
+    { key: 'show_services',     value: 'true' },
   ]);
-  console.log('✅ protofolio_settings   — 9 rows');
+  console.log('✅ protofolio_settings   — 10 rows');
 
   // ── 2. Profiles ────────────────────────────────────────
   await db.delete(schema.protofolioProfiles);
@@ -268,6 +269,24 @@ async function seed() {
     },
   ]);
   console.log('✅ protofolio_courses    — 3 rows');
+
+  // ── 9b. Services (Layanan) ────────────────────────────
+  await db.delete(schema.protofolioServices);
+  await db.insert(schema.protofolioServices).values([
+    // Target Pelanggan
+    { group: 'target', title: 'Bisnis UMKM yang ingin go digital', sort_order: 1 },
+    { group: 'target', title: 'Perusahaan startup yang membutuhkan solusi teknologi', sort_order: 2 },
+    { group: 'target', title: 'Organisasi yang ingin mengoptimalkan proses operasional', sort_order: 3 },
+    // Solusi yang Ditawarkan
+    { group: 'solusi', title: 'Pengembangan aplikasi web modern dan responsif', sort_order: 1 },
+    { group: 'solusi', title: 'Integrasi sistem dan API untuk otomasi proses', sort_order: 2 },
+    { group: 'solusi', title: 'Desain UI/UX yang intuitif dan user-friendly', sort_order: 3 },
+    // Benefit
+    { group: 'benefit', title: 'Peningkatan efisiensi operasional hingga 60%', sort_order: 1 },
+    { group: 'benefit', title: 'Pengurangan biaya operasional secara signifikan', sort_order: 2 },
+    { group: 'benefit', title: 'Meningkatkan pengalaman pelanggan dan retensi', sort_order: 3 },
+  ]);
+  console.log('✅ protofolio_services   — 9 rows');
 
   // ── 10. Messages ───────────────────────────────────────
   await db.delete(schema.protofolioMessages);

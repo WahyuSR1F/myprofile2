@@ -52,6 +52,7 @@ export function SettingsManager({ settings, onUpdate }: Props) {
     { key: 'show_skills', label: 'Skills Section' },
     { key: 'show_projects', label: 'Projects Section' },
     { key: 'show_education', label: 'Education Section' },
+    { key: 'show_services', label: 'Layanan Section (Target/Solusi/Benefit)' },
     { key: 'show_contact', label: 'Contact Section' },
   ];
 

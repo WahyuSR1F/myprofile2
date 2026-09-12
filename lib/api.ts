@@ -127,6 +127,19 @@ export type Course = {
   updated_at: string;
 };
 
+export type Service = {
+  id: string;
+  // 'target' | 'solusi' | 'benefit'
+  group: 'target' | 'solusi' | 'benefit';
+  title: string;
+  description: string | null;
+  icon: string | null;
+  image_url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Certificate = {
   id: string;
   title: string;
@@ -255,6 +268,18 @@ export const coursesApi = {
     apiFetch<Course>(`/api/courses/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   delete: (id: string) =>
     apiFetch<{ success: boolean }>(`/api/courses/${id}`, { method: 'DELETE' }),
+};
+
+// ─── Services ────────────────────────────────────────────────────────────────
+
+export const servicesApi = {
+  list: () => apiFetch<Service[]>('/api/services'),
+  create: (data: Omit<Service, 'id' | 'created_at' | 'updated_at'>) =>
+    apiFetch<Service>('/api/services', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: Partial<Service>) =>
+    apiFetch<Service>(`/api/services/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+  delete: (id: string) =>
+    apiFetch<{ success: boolean }>(`/api/services/${id}`, { method: 'DELETE' }),
 };
 
 // ─── Certificates ─────────────────────────────────────────────────────────────

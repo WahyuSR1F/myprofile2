@@ -211,6 +211,18 @@ const tables = [
 
   `CREATE INDEX IF NOT EXISTS idx_sipd_notif_user_id ON sipd_notifications(user_id)`,
   `CREATE INDEX IF NOT EXISTS idx_sipd_notif_is_read ON sipd_notifications(user_id, is_read)`,
+
+  `CREATE TABLE IF NOT EXISTS protofolio_services (
+    id TEXT PRIMARY KEY,
+    grp TEXT NOT NULL DEFAULT 'solusi',
+    title TEXT NOT NULL,
+    description TEXT,
+    icon TEXT,
+    image_url TEXT,
+    sort_order INTEGER DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
 ];
 
 async function migrate() {

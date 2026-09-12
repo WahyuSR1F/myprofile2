@@ -126,3 +126,16 @@ export type Course = {
   created_at: string;
   updated_at: string;
 };
+
+export type Service = {
+  id: string;
+  // 'target' | 'solusi' | 'benefit'
+  group: 'target' | 'solusi' | 'benefit';
+  title: string;
+  description: string | null;
+  icon: string | null;
+  image_url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
