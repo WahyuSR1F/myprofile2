@@ -30,9 +30,14 @@ export function ServiceManager() {
 
   async function load() {
     setLoading(true);
-    const data = await servicesApi.list();
-    setItems(data);
-    setLoading(false);
+    try {
+      const data = await servicesApi.list();
+      setItems(data);
+    } catch {
+      setItems([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function handleDelete(id: string) {

@@ -36,17 +36,19 @@ export default function Home() {
 
   useEffect(() => {
     async function load() {
+      const safe = <T,>(p: Promise<T>, fallback: T) => p.catch(() => fallback);
+
       const [p, e, s, pr, ed, cert, ach, crs, sv, st] = await Promise.all([
-        profileApi.get(),
-        experiencesApi.list(),
-        skillsApi.list(),
-        projectsApi.list(),
-        educationApi.list(),
-        certificatesApi.list(),
-        achievementsApi.list(),
-        coursesApi.list(),
-        servicesApi.list(),
-        settingsApi.list(),
+        safe(profileApi.get(), null),
+        safe(experiencesApi.list(), []),
+        safe(skillsApi.list(), []),
+        safe(projectsApi.list(), []),
+        safe(educationApi.list(), []),
+        safe(certificatesApi.list(), []),
+        safe(achievementsApi.list(), []),
+        safe(coursesApi.list(), []),
+        safe(servicesApi.list(), []),
+        safe(settingsApi.list(), []),
       ]);
 
       setProfile(p);

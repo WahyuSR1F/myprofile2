@@ -125,6 +125,17 @@ const tables = [
     project_id TEXT REFERENCES sipd_projects(id) ON DELETE SET NULL,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   )`,
+  `CREATE TABLE IF NOT EXISTS protofolio_services (
+    id TEXT PRIMARY KEY,
+    grp TEXT NOT NULL DEFAULT 'solusi',
+    title TEXT NOT NULL,
+    description TEXT,
+    icon TEXT,
+    image_url TEXT,
+    sort_order INTEGER DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
 ];
 
 // Urutan penting: tabel induk dulu (tanpa FK), lalu tabel dengan FK
@@ -139,6 +150,7 @@ const copyOrder = [
   'protofolio_certificates',
   'protofolio_achievements',
   'protofolio_courses',
+  'protofolio_services',
   'sipd_profiles',
   'sipd_projects',
   'sipd_project_documents',
