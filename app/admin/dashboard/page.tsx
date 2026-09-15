@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
 import { profileApi, messagesApi, settingsApi } from '@/lib/api';
 import type { Profile, Message, Setting } from '@/lib/api';
 import { ProfileEditor } from '@/components/admin/profile-editor';
@@ -15,7 +17,8 @@ import { CourseManager } from '@/components/admin/course-manager';
 import { CertificateManager } from '@/components/admin/certificate-manager';
 import { AboutEditor } from '@/components/admin/about-editor';
 import { ServiceManager } from '@/components/admin/service-manager';
-import { Menu, X, HeartPulse } from 'lucide-react';
+import { Menu, X, HeartPulse, LogOut } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 type Tab = 'profile' | 'about' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'services' | 'messages' | 'settings';
 
@@ -25,10 +28,18 @@ export default function AdminDashboardPage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [settings, setSettings] = useState<Setting[]>([]);
+  const { user, loading, signOut } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (!loading && !user) {
+      router.push('/admin/login');
+    }
+  }, [user, loading, router]);
+
+  useEffect(() => {
+    if (user) loadData();
+  }, [user]);
 
   async function loadData() {
     const [p, m, s] = await Promise.all([
@@ -39,6 +50,11 @@ export default function AdminDashboardPage() {
     setProfile(p);
     setMessages(m);
     setSettings(s);
+  }
+
+  async function handleSignOut() {
+    await signOut();
+    router.push('/admin/login');
   }
 
   const tabs: { id: Tab; label: string; badge?: number }[] = [
@@ -56,6 +72,17 @@ export default function AdminDashboardPage() {
     { id: 'settings', label: 'Settings' },
   ];
 
+  // Show loading while checking auth
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-secondary/20">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!user) return null;
+
   return (
     <div className="min-h-screen bg-secondary/20">
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card px-4 py-3 lg:hidden">
@@ -65,6 +92,9 @@ export default function AdminDashboardPage() {
         <span className="font-display font-bold flex items-center gap-2">
           <HeartPulse className="h-5 w-5 text-primary" /> Admin
         </span>
+        <button onClick={handleSignOut} className="rounded-lg p-2 hover:bg-secondary text-muted-foreground hover:text-foreground">
+          <LogOut className="h-4 w-4" />
+        </button>
       </div>
 
       <div className="flex">
@@ -94,6 +124,15 @@ export default function AdminDashboardPage() {
                 </button>
               ))}
             </nav>
+            <div className="border-t border-border p-4">
+              <button
+                onClick={handleSignOut}
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+              >
+                <LogOut className="h-4 w-4" />
+                Keluar
+              </button>
+            </div>
           </div>
         </aside>
 

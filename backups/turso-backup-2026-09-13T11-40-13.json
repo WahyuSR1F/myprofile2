@@ -1,0 +1,692 @@
+{
+  "protofolio_settings": [
+    {
+      "id": "95b030a1-0471-4735-bfd9-c7ec66c393d5",
+      "key": "show_about",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "c8b3eb3c-9cfb-4f7b-97df-438b9be47764",
+      "key": "show_experiences",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "1ed47211-ebd2-4a3e-8dee-77f12f537dfe",
+      "key": "show_skills",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "f0c8c0ee-932c-43af-a0d9-5cb218b17123",
+      "key": "show_projects",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "180f9747-16f2-481f-a253-38f9f9f6e303",
+      "key": "show_education",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "9d8c2949-8b1a-4b5d-b999-dc8ec2ac4c85",
+      "key": "show_contact",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "828cdf9a-a6b7-498c-8e57-9ce1fa238ac6",
+      "key": "show_certificates",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "5b31c7f5-81a2-4726-a08f-b7fa3fd9352c",
+      "key": "show_achievements",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "27f5df66-cadf-4083-a92f-b367480b3143",
+      "key": "show_courses",
+      "value": "true",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_profiles": [
+    {
+      "id": "df55f494-13e2-4fbe-a6b3-adecd248ee5b",
+      "name": "Wahyu Sahri Rhamadhan",
+      "title": "Health Professional",
+      "tagline": "",
+      "bio": "",
+      "photo_url": "/images/profile/profile.png",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "website": "",
+      "linkedin_url": "",
+      "github_url": "",
+      "twitter_url": "",
+      "instagram_url": "",
+      "cv_url": "",
+      "available_for_work": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13T07:23:59.665Z",
+      "motivasi": null,
+      "keterangan_pengalaman": null,
+      "about_highlights": "[]",
+      "about_stats": "[]"
+    }
+  ],
+  "protofolio_experiences": [
+    {
+      "id": "00827dec-8007-40d3-87c0-777b7b80115a",
+      "company": "PT Teknologi Nusantara",
+      "position": "Senior Full Stack Developer",
+      "start_date": "2022-01",
+      "end_date": null,
+      "current": 1,
+      "description": "Memimpin tim pengembangan aplikasi enterprise menggunakan Next.js, Node.js, dan PostgreSQL. Bertanggung jawab atas arsitektur sistem dan code review.",
+      "achievements": "[\"Meningkatkan performa aplikasi sebesar 40% dengan optimasi query dan caching\",\"Memimpin migrasi dari monolith ke microservices\",\"Merekrut dan melatih 3 junior developer\"]",
+      "location": "Jakarta, Indonesia",
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21",
+      "image_url": null
+    },
+    {
+      "id": "471d2fb0-9c93-45fe-ab5d-42490b5f53ac",
+      "company": "Startup Digital Indonesia",
+      "position": "Full Stack Developer",
+      "start_date": "2020-03",
+      "end_date": "2021-12",
+      "current": 0,
+      "description": "Membangun fitur-fitur baru untuk platform e-commerce dengan lebih dari 50.000 pengguna aktif. Stack: React, Express.js, MySQL.",
+      "achievements": "[\"Mengembangkan fitur payment gateway yang digunakan 10.000+ transaksi/bulan\",\"Mengurangi bug production sebesar 60% dengan penerapan unit testing\"]",
+      "location": "Bandung, Indonesia",
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21",
+      "image_url": null
+    },
+    {
+      "id": "93d50b2c-44e5-447a-81fb-baef29b1da25",
+      "company": "CV Solusi Web",
+      "position": "Junior Web Developer",
+      "start_date": "2018-06",
+      "end_date": "2020-02",
+      "current": 0,
+      "description": "Mengembangkan website dan landing page untuk klien dari berbagai industri menggunakan WordPress, HTML/CSS, dan JavaScript.",
+      "achievements": "[\"Menyelesaikan 30+ proyek website klien\",\"Mempelajari React dan Node.js secara mandiri\"]",
+      "location": "Yogyakarta, Indonesia",
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21",
+      "image_url": null
+    }
+  ],
+  "protofolio_skills": [
+    {
+      "id": "44753e5e-f095-42d7-b04e-7f55dff87a70",
+      "name": "TypeScript",
+      "category": "Programming Language",
+      "proficiency": 90,
+      "icon": null,
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "65348014-56d9-4f17-8204-98b616e1e7c2",
+      "name": "JavaScript",
+      "category": "Programming Language",
+      "proficiency": 95,
+      "icon": null,
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "db507dde-a14c-414b-9d4b-36ef71cfe611",
+      "name": "Python",
+      "category": "Programming Language",
+      "proficiency": 70,
+      "icon": null,
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "1c88eff6-1263-44d7-95c5-6f8dd7da042e",
+      "name": "React",
+      "category": "Frontend",
+      "proficiency": 90,
+      "icon": null,
+      "sort_order": 4,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "a36b9be0-06e5-4ef4-b98c-745475718ea1",
+      "name": "Next.js",
+      "category": "Frontend",
+      "proficiency": 88,
+      "icon": null,
+      "sort_order": 5,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "62bf96f9-fdc1-4100-a9c0-d39a136b569e",
+      "name": "Tailwind CSS",
+      "category": "Frontend",
+      "proficiency": 85,
+      "icon": null,
+      "sort_order": 6,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "978d0e52-09d2-4a09-9142-b2a43f5262ae",
+      "name": "Node.js",
+      "category": "Backend",
+      "proficiency": 85,
+      "icon": null,
+      "sort_order": 7,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "0ceef7b0-f498-42c0-ad31-f6d906950ae0",
+      "name": "Express.js",
+      "category": "Backend",
+      "proficiency": 80,
+      "icon": null,
+      "sort_order": 8,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "f01be090-c693-4a7c-9bd6-b48ef618e65e",
+      "name": "PostgreSQL",
+      "category": "Database",
+      "proficiency": 80,
+      "icon": null,
+      "sort_order": 9,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "71134d95-908e-42d0-a7d1-013448add3c9",
+      "name": "SQLite",
+      "category": "Database",
+      "proficiency": 75,
+      "icon": null,
+      "sort_order": 10,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "41eea2c5-cee7-4115-abf8-7e7478973f50",
+      "name": "Docker",
+      "category": "DevOps",
+      "proficiency": 70,
+      "icon": null,
+      "sort_order": 11,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "7c809bda-0583-4751-9bbf-aef362518087",
+      "name": "Git",
+      "category": "DevOps",
+      "proficiency": 90,
+      "icon": null,
+      "sort_order": 12,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_projects": [
+    {
+      "id": "6cd648b3-e01b-4cd6-8b11-4fb6e11ed270",
+      "title": "SiKerja — HR Management System",
+      "description": "Sistem manajemen SDM terintegrasi untuk perusahaan menengah ke atas.",
+      "long_description": "Platform HR lengkap dengan fitur absensi, penggajian, cuti, evaluasi kinerja, dan rekrutmen. Digunakan oleh 15 perusahaan dengan total 2.000+ karyawan.",
+      "image_url": "/images/proyek/sikerja.jpg",
+      "tech_stack": "[\"Next.js\",\"TypeScript\",\"PostgreSQL\",\"Prisma\",\"Tailwind CSS\"]",
+      "project_url": "https://sikerja.example.com",
+      "github_url": "https://github.com/budisantoso/sikerja",
+      "featured": 1,
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "03189714-dee9-4574-9901-8906e2a7104f",
+      "title": "TokoKu — Platform E-Commerce",
+      "description": "Platform belanja online dengan fitur lengkap untuk UMKM.",
+      "long_description": "Marketplace yang memungkinkan UMKM berjualan online dengan mudah. Fitur: manajemen produk, keranjang belanja, payment gateway, dan laporan penjualan.",
+      "image_url": "/images/proyek/tokoku.jpg",
+      "tech_stack": "[\"React\",\"Node.js\",\"Express\",\"MySQL\",\"Redux\"]",
+      "project_url": "https://tokoku.example.com",
+      "github_url": "https://github.com/budisantoso/tokoku",
+      "featured": 1,
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "791bf2a3-9119-4f99-84dc-0c715b2744f5",
+      "title": "CatatanKu — Note Taking App",
+      "description": "Aplikasi catatan pintar dengan AI summarization.",
+      "long_description": "Aplikasi pencatat berbasis web dengan fitur markdown, tagging, pencarian fulltext, dan ringkasan otomatis menggunakan OpenAI API.",
+      "image_url": "/images/proyek/catatanku.jpg",
+      "tech_stack": "[\"Next.js\",\"SQLite\",\"OpenAI API\",\"Tailwind CSS\"]",
+      "project_url": "https://catatanku.example.com",
+      "github_url": "https://github.com/budisantoso/catatanku",
+      "featured": 0,
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_education": [
+    {
+      "id": "9ca6d702-ab7a-4a3f-a46d-7f97f4da561e",
+      "institution": "Universitas Indonesia",
+      "degree": "Sarjana (S1)",
+      "field": "Teknik Informatika",
+      "start_date": "2014",
+      "end_date": "2018",
+      "description": "IPK 3.72 / 4.00. Aktif di UKM Programming dan menjabat sebagai Ketua Himpunan Mahasiswa Informatika periode 2016-2017.",
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "e5cbc546-c60d-4bad-beaf-6710e026ee89",
+      "institution": "SMAN 1 Jakarta",
+      "degree": "SMA",
+      "field": "IPA",
+      "start_date": "2011",
+      "end_date": "2014",
+      "description": "Juara 1 Olimpiade Komputer tingkat Provinsi DKI Jakarta tahun 2013.",
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_messages": [
+    {
+      "id": "dc42893a-9a13-45e2-bf62-656e27e64147",
+      "name": "Andi Wijaya",
+      "email": "andi.wijaya@company.co.id",
+      "subject": "Tawaran Kerjasama Project",
+      "message": "Halo Budi, saya tertarik untuk mengajak kerjasama dalam pengembangan aplikasi internal perusahaan kami. Apakah Anda available untuk project jangka panjang?",
+      "is_read": 0,
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "2b3fdecf-3023-4f2a-8934-924bb9c4fbce",
+      "name": "Siti Rahayu",
+      "email": "siti.rahayu@startup.id",
+      "subject": "Konsultasi Teknologi",
+      "message": "Selamat siang, saya ingin berkonsultasi mengenai pilihan tech stack untuk startup kami yang akan launch tahun ini. Bisa dijadwalkan meeting?",
+      "is_read": 1,
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "54a11eb0-6a0a-454b-901f-be7c259ddf6b",
+      "name": "Reza Firmansyah",
+      "email": "reza@freelance.com",
+      "subject": "Kolaborasi Proyek Open Source",
+      "message": "Hi! Saya lihat project react-form-wizard kamu di GitHub dan sangat tertarik untuk berkontribusi. Ada yang bisa saya bantu?",
+      "is_read": 0,
+      "created_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_certificates": [
+    {
+      "id": "3b90340e-f29a-41d5-8239-7dac07d100db",
+      "title": "AWS Certified Developer – Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023-08",
+      "url": "https://aws.amazon.com/certification",
+      "image_url": "/images/certicate/aws-dev.jpg",
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "a8bd7dc3-ca5b-4594-9039-4ce263f03e37",
+      "title": "Professional Scrum Master I (PSM I)",
+      "issuer": "Scrum.org",
+      "date": "2022-11",
+      "url": "https://scrum.org/certificates",
+      "image_url": "/images/certicate/psm1.jpg",
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "5cb26ab1-f7c6-4daa-9a16-e0e2be908191",
+      "title": "Meta Front-End Developer Certificate",
+      "issuer": "Meta (Coursera)",
+      "date": "2022-03",
+      "url": "https://coursera.org/verify/abc123",
+      "image_url": "/images/certicate/meta-frontend.jpg",
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_achievements": [
+    {
+      "id": "241f9ff7-1f3e-466a-bb01-c473ece10557",
+      "title": "Juara 1 Hackathon GovTech 2023",
+      "description": "Memenangkan kompetisi hackathon nasional untuk solusi teknologi pemerintahan dengan aplikasi SIPD berbasis AI.",
+      "date": "2023-11",
+      "icon": "🏆",
+      "image_url": null,
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "56479c40-1a8c-4b9f-86e5-54d37fb67cce",
+      "title": "Speaker di JSConf Indonesia 2023",
+      "description": "Menjadi pembicara di konferensi JavaScript Indonesia dengan topik \"Optimasi Performa Next.js untuk Skala Enterprise\".",
+      "date": "2023-09",
+      "icon": "🎤",
+      "image_url": null,
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "ea985719-6644-42fb-920d-ab3150250921",
+      "title": "Open Source Contributor — 500+ Stars",
+      "description": "Library open source react-form-wizard yang saya buat mendapatkan 500+ bintang di GitHub.",
+      "date": "2022-07",
+      "icon": "⭐",
+      "image_url": null,
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_courses": [
+    {
+      "id": "f2f50a72-0fb1-4f18-b70f-7223b881b592",
+      "name": "The Complete Node.js Developer Course",
+      "provider": "Udemy (Andrew Mead)",
+      "date": "2021-05",
+      "url": "https://udemy.com/course/the-complete-nodejs-developer-course",
+      "image_url": null,
+      "sort_order": 1,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "db4f9ce1-2de3-4024-b844-175df9974c44",
+      "name": "CS50x: Introduction to Computer Science",
+      "provider": "Harvard (edX)",
+      "date": "2020-12",
+      "url": "https://cs50.harvard.edu/x",
+      "image_url": null,
+      "sort_order": 2,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "65be5630-778a-4b4c-ac80-5f5a6c2e331a",
+      "name": "Full Stack Open",
+      "provider": "University of Helsinki",
+      "date": "2021-08",
+      "url": "https://fullstackopen.com",
+      "image_url": null,
+      "sort_order": 3,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "protofolio_services": [],
+  "sipd_profiles": [
+    {
+      "id": "1c73d5c1-eca4-46e4-88f4-68a4ab717db0",
+      "name": "Administrator",
+      "email": "admin@sipd.local",
+      "role": "admin",
+      "company": "Dinas Komunikasi dan Informatika",
+      "phone": "021-1234567",
+      "avatar_url": null,
+      "password_hash": "CHANGE_ME_USE_BCRYPT",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "name": "PT Maju Bersama",
+      "email": "pt.majubersama@email.com",
+      "role": "pemohon",
+      "company": "PT Maju Bersama",
+      "phone": "+62 811-222-3333",
+      "avatar_url": null,
+      "password_hash": "CHANGE_ME_USE_BCRYPT",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "e9deabca-b5ee-4b3f-96b5-aada8a80a6dc",
+      "name": "CV Karya Mandiri",
+      "email": "cv.karyamandiri@email.com",
+      "role": "pemohon",
+      "company": "CV Karya Mandiri",
+      "phone": "+62 822-444-5555",
+      "avatar_url": null,
+      "password_hash": "CHANGE_ME_USE_BCRYPT",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "555ca61d-5194-47ee-95e0-ed569db308ac",
+      "name": "Ir. Budi Setiawan, M.T.",
+      "email": "budi.setiawan@dinas.go.id",
+      "role": "penilai",
+      "company": "Dinas Pekerjaan Umum",
+      "phone": "021-9876543",
+      "avatar_url": null,
+      "password_hash": "CHANGE_ME_USE_BCRYPT",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "sipd_projects": [
+    {
+      "id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "code": "PRJ-2026-00001",
+      "title": "Permohonan Izin Pembangunan Gedung Kantor",
+      "description": "Permohonan izin mendirikan bangunan untuk gedung kantor 5 lantai di Jl. Sudirman No. 45, Jakarta Pusat.",
+      "status": "under_review",
+      "user_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "assigned_to": "555ca61d-5194-47ee-95e0-ed569db308ac",
+      "review_notes": "Dokumen lengkap, sedang dalam proses review teknis.",
+      "submitted_at": "2026-07-15T00:00:00.000Z",
+      "reviewed_at": null,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "d488b134-019c-4b66-9ef2-cab49f2e1a4e",
+      "code": "PRJ-2026-00002",
+      "title": "Permohonan Sertifikasi Produk Elektronik",
+      "description": "Pengajuan sertifikasi untuk produk power bank model XB-2000 sesuai standar SNI.",
+      "status": "submitted",
+      "user_id": "e9deabca-b5ee-4b3f-96b5-aada8a80a6dc",
+      "assigned_to": null,
+      "review_notes": null,
+      "submitted_at": "2026-08-01T00:00:00.000Z",
+      "reviewed_at": null,
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "366b0fff-dc99-44ad-803c-db12e10ec851",
+      "code": "PRJ-2026-00003",
+      "title": "Permohonan Izin Usaha Perdagangan",
+      "description": "Pengajuan Surat Izin Usaha Perdagangan (SIUP) untuk kegiatan distribusi bahan bangunan.",
+      "status": "approved",
+      "user_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "assigned_to": "555ca61d-5194-47ee-95e0-ed569db308ac",
+      "review_notes": "Semua persyaratan terpenuhi. Disetujui.",
+      "submitted_at": "2026-06-10T00:00:00.000Z",
+      "reviewed_at": "2026-06-25T00:00:00.000Z",
+      "created_at": "2026-08-13 07:12:21",
+      "updated_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "sipd_project_documents": [
+    {
+      "id": "c351e96c-32c6-4bec-be56-26746decf721",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "name": "KTP Penanggung Jawab",
+      "file_url": "/uploads/sipd/proj1/ktp-penanggung-jawab.pdf",
+      "file_size": 512000,
+      "mime_type": "application/pdf",
+      "uploaded_by": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "a07d4261-beb0-4643-a410-857ad881768a",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "name": "Gambar Rencana Bangunan",
+      "file_url": "/uploads/sipd/proj1/gambar-rencana.pdf",
+      "file_size": 2048000,
+      "mime_type": "application/pdf",
+      "uploaded_by": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "92a0e453-1ac1-4d40-b8c7-71b1d2be5ce6",
+      "project_id": "d488b134-019c-4b66-9ef2-cab49f2e1a4e",
+      "name": "Spesifikasi Teknis Produk",
+      "file_url": "/uploads/sipd/proj2/spesifikasi-teknis.pdf",
+      "file_size": 768000,
+      "mime_type": "application/pdf",
+      "uploaded_by": "e9deabca-b5ee-4b3f-96b5-aada8a80a6dc",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "6209df34-1b4b-4d34-9202-c879c1990f1f",
+      "project_id": "366b0fff-dc99-44ad-803c-db12e10ec851",
+      "name": "Akta Pendirian Perusahaan",
+      "file_url": "/uploads/sipd/proj3/akta-pendirian.pdf",
+      "file_size": 1024000,
+      "mime_type": "application/pdf",
+      "uploaded_by": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "created_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "sipd_project_history": [
+    {
+      "id": "c6c1780a-f977-4d8d-97cd-48e5f5b64881",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "from_status": null,
+      "to_status": "draft",
+      "notes": "Permohonan dibuat",
+      "actor_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "56dd9fc1-561c-46c8-9fd4-fa2f35d1389d",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "from_status": "draft",
+      "to_status": "submitted",
+      "notes": "Dokumen lengkap, permohonan diajukan",
+      "actor_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "180042c7-91c9-419f-bb36-339a9aac4696",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "from_status": "submitted",
+      "to_status": "admin_verification",
+      "notes": "Diterima admin, verifikasi kelengkapan berkas",
+      "actor_id": "1c73d5c1-eca4-46e4-88f4-68a4ab717db0",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "47f9ffcb-5600-4351-8c5b-40124dd10e95",
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "from_status": "admin_verification",
+      "to_status": "under_review",
+      "notes": "Berkas lengkap, diteruskan ke penilai teknis",
+      "actor_id": "1c73d5c1-eca4-46e4-88f4-68a4ab717db0",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "92f361da-2c2c-448a-8b11-aac6826173cf",
+      "project_id": "366b0fff-dc99-44ad-803c-db12e10ec851",
+      "from_status": "submitted",
+      "to_status": "approved",
+      "notes": "Semua persyaratan terpenuhi. SIUP disetujui.",
+      "actor_id": "555ca61d-5194-47ee-95e0-ed569db308ac",
+      "created_at": "2026-08-13 07:12:21"
+    }
+  ],
+  "sipd_notifications": [
+    {
+      "id": "de910096-acde-44e6-aea3-efc629034d82",
+      "user_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "title": "Permohonan Sedang Direview",
+      "message": "Permohonan PRJ-2026-00001 Anda sedang dalam proses review teknis oleh penilai.",
+      "type": "info",
+      "is_read": 0,
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "4ad7b60d-fe7b-4c31-91ea-408357d6db1f",
+      "user_id": "555ca61d-5194-47ee-95e0-ed569db308ac",
+      "title": "Permohonan Baru Ditugaskan",
+      "message": "Anda ditugaskan untuk mereview permohonan PRJ-2026-00001 dari PT Maju Bersama.",
+      "type": "info",
+      "is_read": 0,
+      "project_id": "a02e6884-af39-428c-b444-c6f482b98420",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "1ee8c148-d51a-4c43-8b50-4df13a5b1866",
+      "user_id": "00413a85-a9eb-4f4b-aa9d-71367746a4e6",
+      "title": "Permohonan Disetujui! 🎉",
+      "message": "Selamat! Permohonan SIUP PRJ-2026-00003 Anda telah disetujui. Silakan unduh dokumen izin.",
+      "type": "success",
+      "is_read": 1,
+      "project_id": "366b0fff-dc99-44ad-803c-db12e10ec851",
+      "created_at": "2026-08-13 07:12:21"
+    },
+    {
+      "id": "63f0c5ff-110c-4a05-b970-92e70938d95d",
+      "user_id": "e9deabca-b5ee-4b3f-96b5-aada8a80a6dc",
+      "title": "Permohonan Diterima",
+      "message": "Permohonan PRJ-2026-00002 Anda telah diterima dan menunggu penugasan penilai.",
+      "type": "info",
+      "is_read": 0,
+      "project_id": "d488b134-019c-4b66-9ef2-cab49f2e1a4e",
+      "created_at": "2026-08-13 07:12:21"
+    }
+  ]
+}

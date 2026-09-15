@@ -4,6 +4,11 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import type { User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 
+// ── Static login credentials (when Supabase is not configured) ──
+const STATIC_USER = { email: 'admin123', id: 'static-admin' } as User;
+const ADMIN_CREDENTIALS = { username: 'admin123', password: 'admin123' };
+const STORAGE_KEY = 'portfolio_admin_auth';
+
 type AuthContextType = {
   user: User | null;
   loading: boolean;
@@ -25,7 +30,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check static login first (localStorage)
     if (!supabase) {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'true') {
+          setUser(STATIC_USER);
+        }
+      } catch {}
       setLoading(false);
       return;
     }
@@ -44,7 +56,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   async function signIn(email: string, password: string) {
-    if (!supabase) return { error: 'Supabase is not configured' };
+    // Static login when Supabase is not configured
+    if (!supabase) {
+      if (email === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+        try {
+          localStorage.setItem(STORAGE_KEY, 'true');
+        } catch {}
+        setUser(STATIC_USER);
+        return { error: null };
+      }
+      return { error: 'Username atau password salah' };
+    }
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     return { error: error?.message ?? null };
   }
@@ -56,7 +79,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut() {
-    if (!supabase) return;
+    if (!supabase) {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch {}
+      setUser(null);
+      return;
+    }
     await supabase.auth.signOut();
   }
 

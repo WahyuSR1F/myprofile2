@@ -15,7 +15,11 @@
     "db:studio": "drizzle-kit studio",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:seed": "tsx scripts/seed.ts",
-    "db:setup": "tsx scripts/migrate.ts && tsx scripts/seed.ts"
+    "db:setup": "tsx scripts/migrate.ts && tsx scripts/seed.ts",
+    "db:sync": "tsx scripts/sync-turso.ts",
+    "db:sync:dry": "tsx scripts/sync-turso.ts --dry-run",
+    "db:backup": "tsx scripts/sync-turso.ts --backup",
+    "db:sync:reverse": "tsx scripts/sync-turso.ts --direction turso-to-local"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
