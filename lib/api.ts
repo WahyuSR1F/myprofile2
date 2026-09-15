@@ -129,7 +129,7 @@ export type Course = {
 
 export type Service = {
   id: string;
-  // 'target' | 'solusi' | 'benefit'
+  // 'target' | 'solusi' | 'benefit' (DB column is `grp`, mapped by drizzle)
   group: 'target' | 'solusi' | 'benefit';
   title: string;
   description: string | null;

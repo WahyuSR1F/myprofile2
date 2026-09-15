@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, Target, Lightbulb, CheckCircle, ArrowRight, ExternalLink, Github } from "lucide-react";
-import type { Project } from "@/lib/api";
+import type { Project, Service } from "@/lib/api";
+import { servicesApi } from "@/lib/api";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -19,24 +20,19 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Default catalog data based on project
-  const catalogData = {
-    targetCustomers: [
-      "Bisnis UMKM yang ingin go digital",
-      "Perusahaan startup yang membutuhkan solusi teknologi",
-      "Organisasi yang ingin mengoptimalkan proses operasional",
-    ],
-    solutions: [
-      "Pengembangan aplikasi web modern dan responsif",
-      "Integrasi sistem dan API untuk otomasi proses",
-      "Desain UI/UX yang intuitif dan user-friendly",
-    ],
-    benefits: [
-      "Peningkatan efisiensi operasional hingga 60%",
-      "Pengurangan biaya operasional secara signifikan",
-      "Meningkatkan pengalaman pelanggan dan retensi",
-    ],
-  };
+  // Services (Target Pelanggan / Solusi / Benefit) fetched from DB so they are editable via admin
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    servicesApi
+      .list()
+      .then(setServices)
+      .catch(() => setServices([]));
+  }, []);
+
+  const targetCustomers = services.filter((s) => s.group === "target").map((s) => s.title);
+  const solutions = services.filter((s) => s.group === "solusi").map((s) => s.title);
+  const benefits = services.filter((s) => s.group === "benefit").map((s) => s.title);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -166,7 +162,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
               Target Pelanggan
             </h3>
             <ul className="space-y-2">
-              {catalogData.targetCustomers.map((item, i) => (
+              {targetCustomers.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                   <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                   <span>{item}</span>
@@ -182,7 +178,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
               Solusi yang Ditawarkan
             </h3>
             <ul className="space-y-2">
-              {catalogData.solutions.map((item, i) => (
+              {solutions.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                   <ArrowRight className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   <span>{item}</span>
@@ -198,7 +194,7 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
               Benefit
             </h3>
             <ul className="space-y-2">
-              {catalogData.benefits.map((item, i) => (
+              {benefits.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                   <span className="w-6 h-6 rounded-full bg-green-500/15 flex items-center justify-center shrink-0">
                     <CheckCircle className="h-4 w-4 text-green-600" />
