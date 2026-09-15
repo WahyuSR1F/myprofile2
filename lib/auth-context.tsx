@@ -1,19 +1,17 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import type { User } from '@supabase/supabase-js';
-import { supabase } from './supabase';
 
-// ── Static login credentials (when Supabase is not configured) ──
-const STATIC_USER = { email: 'admin123', id: 'static-admin' } as User;
+// ── Static credentials (no database) ──
 const ADMIN_CREDENTIALS = { username: 'admin123', password: 'admin123' };
 const STORAGE_KEY = 'portfolio_admin_auth';
 
+export type AuthUser = { id: string; email: string };
+
 type AuthContextType = {
-  user: User | null;
+  user: AuthUser | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: string | null }>;
-  signUp: (email: string, password: string) => Promise<{ error: string | null }>;
+  signIn: (username: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
 };
 
@@ -21,76 +19,46 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   signIn: async () => ({ error: 'Not implemented' }),
-  signUp: async () => ({ error: 'Not implemented' }),
   signOut: async () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check static login first (localStorage)
-    if (!supabase) {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored === 'true') {
-          setUser(STATIC_USER);
-        }
-      } catch {}
-      setLoading(false);
-      return;
-    }
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    // Restore session from localStorage (static login, no database)
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'true') {
+        setUser({ id: 'static-admin', email: ADMIN_CREDENTIALS.username });
+      }
+    } catch {}
+    setLoading(false);
   }, []);
 
-  async function signIn(email: string, password: string) {
-    // Static login when Supabase is not configured
-    if (!supabase) {
-      if (email === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-        try {
-          localStorage.setItem(STORAGE_KEY, 'true');
-        } catch {}
-        setUser(STATIC_USER);
-        return { error: null };
-      }
-      return { error: 'Username atau password salah' };
+  async function signIn(username: string, password: string) {
+    const u = (username ?? '').trim();
+    const p = (password ?? '').trim();
+    if (u === ADMIN_CREDENTIALS.username && p === ADMIN_CREDENTIALS.password) {
+      try {
+        localStorage.setItem(STORAGE_KEY, 'true');
+      } catch {}
+      setUser({ id: 'static-admin', email: ADMIN_CREDENTIALS.username });
+      return { error: null };
     }
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return { error: error?.message ?? null };
-  }
-
-  async function signUp(email: string, password: string) {
-    if (!supabase) return { error: 'Supabase is not configured' };
-    const { error } = await supabase.auth.signUp({ email, password });
-    return { error: error?.message ?? null };
+    return { error: 'Username atau password salah' };
   }
 
   async function signOut() {
-    if (!supabase) {
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-      } catch {}
-      setUser(null);
-      return;
-    }
-    await supabase.auth.signOut();
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+    setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
