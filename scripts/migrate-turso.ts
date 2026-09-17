@@ -12,6 +12,8 @@ if (!url || !token) {
   process.exit(1);
 }
 
+const client = createClient({ url, authToken: token });
+
 const ALTER_STATEMENTS = [
   { sql: `ALTER TABLE protofolio_experiences ADD COLUMN image_url TEXT`, label: 'experiences.image_url' },
   { sql: `ALTER TABLE protofolio_projects ADD COLUMN target_pelanggan TEXT DEFAULT '[]'`, label: 'projects.target_pelanggan' },
@@ -20,7 +22,6 @@ const ALTER_STATEMENTS = [
 ];
 
 async function main() {
-  const client = createClient({ url, authToken: token });
   const applied: string[] = [];
   const skipped: string[] = [];
 
