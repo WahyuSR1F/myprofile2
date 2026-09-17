@@ -66,6 +66,9 @@ const tables = [
     tech_stack TEXT DEFAULT '[]',
     project_url TEXT,
     github_url TEXT,
+    target_pelanggan TEXT DEFAULT '[]',
+    solusi TEXT DEFAULT '[]',
+    benefit TEXT DEFAULT '[]',
     featured INTEGER DEFAULT 0,
     sort_order INTEGER DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
@@ -237,12 +240,15 @@ async function migrate() {
       await client.execute(stmt);
     }
 
-    // ── Add new columns to protofolio_profiles if missing ──
+    // ── Add new columns to existing tables if missing ──
     const alterCols = [
       "ALTER TABLE protofolio_profiles ADD COLUMN motivasi TEXT",
       "ALTER TABLE protofolio_profiles ADD COLUMN keterangan_pengalaman TEXT",
       "ALTER TABLE protofolio_profiles ADD COLUMN about_highlights TEXT DEFAULT '[]'",
       "ALTER TABLE protofolio_profiles ADD COLUMN about_stats TEXT DEFAULT '[]'",
+      "ALTER TABLE protofolio_projects ADD COLUMN target_pelanggan TEXT DEFAULT '[]'",
+      "ALTER TABLE protofolio_projects ADD COLUMN solusi TEXT DEFAULT '[]'",
+      "ALTER TABLE protofolio_projects ADD COLUMN benefit TEXT DEFAULT '[]'",
     ];
     for (const stmt of alterCols) {
       try {

@@ -134,6 +134,18 @@ async function seed() {
       tech_stack:       JSON.stringify(['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Tailwind CSS']),
       project_url:      'https://sikerja.example.com',
       github_url:       'https://github.com/budisantoso/sikerja',
+      target_pelanggan: JSON.stringify([
+        'Perusahaan menengah ke atas dengan 100+ karyawan',
+        'Perusahaan yang masih mencatat SDM secara manual',
+      ]),
+      solusi: JSON.stringify([
+        'Aplikasi HR lengkap: absensi, penggajian, cuti, evaluasi kinerja, rekrutmen',
+        'Dashboard analitik SDM real-time untuk manajemen',
+      ]),
+      benefit: JSON.stringify([
+        'Menghemat waktu administrasi SDM hingga 60%',
+        'Mengurangi human error dalam penggajian',
+      ]),
       featured:         true,
       sort_order:       1,
     },
@@ -145,6 +157,18 @@ async function seed() {
       tech_stack:       JSON.stringify(['React', 'Node.js', 'Express', 'MySQL', 'Redux']),
       project_url:      'https://tokoku.example.com',
       github_url:       'https://github.com/budisantoso/tokoku',
+      target_pelanggan: JSON.stringify([
+        'Bisnis UMKM yang ingin go digital',
+        'Pemilik toko offline yang ingin mulai berjualan online',
+      ]),
+      solusi: JSON.stringify([
+        'Marketplace siap pakai dengan manajemen produk dan payment gateway',
+        'Laporan penjualan otomatis',
+      ]),
+      benefit: JSON.stringify([
+        'Jangkauan pelanggan lebih luas tanpa biaya sewa tempat',
+        'Peningkatan efisiensi operasional hingga 60%',
+      ]),
       featured:         true,
       sort_order:       2,
     },
@@ -156,6 +180,18 @@ async function seed() {
       tech_stack:       JSON.stringify(['Next.js', 'SQLite', 'OpenAI API', 'Tailwind CSS']),
       project_url:      'https://catatanku.example.com',
       github_url:       'https://github.com/budisantoso/catatanku',
+      target_pelanggan: JSON.stringify([
+        'Profesional dan pelajar yang butuh mencatat cepat',
+        'Tim yang ingin dokumentasi ringkas dan terstruktur',
+      ]),
+      solusi: JSON.stringify([
+        'Aplikasi pencatat markdown dengan pencarian fulltext',
+        'Ringkasan otomatis menggunakan OpenAI API',
+      ]),
+      benefit: JSON.stringify([
+        'Menghemat waktu membaca dokumen panjang',
+        'Catatan lebih mudah dicari dan dikelola',
+      ]),
       featured:         false,
       sort_order:       3,
     },

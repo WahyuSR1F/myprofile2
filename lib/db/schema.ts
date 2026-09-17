@@ -76,6 +76,10 @@ export const protofolioProjects = sqliteTable('protofolio_projects', {
   tech_stack: text('tech_stack').default('[]'),
   project_url: text('project_url'),
   github_url: text('github_url'),
+  // Stored as JSON array strings e.g. '["Bisnis UMKM", ...]'
+  target_pelanggan: text('target_pelanggan').default('[]'),
+  solusi: text('solusi').default('[]'),
+  benefit: text('benefit').default('[]'),
   featured: integer('featured', { mode: 'boolean' }).default(false),
   sort_order: integer('sort_order').default(0),
   ...timestamps,

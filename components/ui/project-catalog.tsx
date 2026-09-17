@@ -20,19 +20,36 @@ export function ProjectCatalog({ project, onClose }: ProjectCatalogProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Services (Target Pelanggan / Solusi / Benefit) fetched from DB so they are editable via admin
+  // Services (Target Pelanggan / Solusi / Benefit) fetched from DB as fallback
+  // when the project doesn't have its own catalog content.
   const [services, setServices] = useState<Service[]>([]);
 
   useEffect(() => {
+    // Only fetch the global services if this project has no own content
+    const hasOwn =
+      (project.target_pelanggan?.length ?? 0) > 0 ||
+      (project.solusi?.length ?? 0) > 0 ||
+      (project.benefit?.length ?? 0) > 0;
+    if (hasOwn) return;
     servicesApi
       .list()
       .then(setServices)
       .catch(() => setServices([]));
   }, []);
 
-  const targetCustomers = services.filter((s) => s.group === "target").map((s) => s.title);
-  const solutions = services.filter((s) => s.group === "solusi").map((s) => s.title);
-  const benefits = services.filter((s) => s.group === "benefit").map((s) => s.title);
+  // Prefer per-project content; fallback to global services (tab Layanan)
+  const targetCustomers =
+    project.target_pelanggan && project.target_pelanggan.length > 0
+      ? project.target_pelanggan
+      : services.filter((s) => s.group === "target").map((s) => s.title);
+  const solutions =
+    project.solusi && project.solusi.length > 0
+      ? project.solusi
+      : services.filter((s) => s.group === "solusi").map((s) => s.title);
+  const benefits =
+    project.benefit && project.benefit.length > 0
+      ? project.benefit
+      : services.filter((s) => s.group === "benefit").map((s) => s.title);
 
   useEffect(() => {
     const ctx = gsap.context(() => {

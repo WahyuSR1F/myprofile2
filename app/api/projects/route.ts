@@ -3,10 +3,18 @@ import { db } from '@/lib/db';
 import { protofolioProjects } from '@/lib/db/schema';
 import { eq, asc } from 'drizzle-orm';
 
+function parseJsonArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value as string[];
+  try { return JSON.parse((value as string) ?? '[]'); } catch { return []; }
+}
+
 function parseRow(row: any) {
   return {
     ...row,
-    tech_stack: (() => { try { return JSON.parse(row.tech_stack ?? '[]'); } catch { return []; } })(),
+    tech_stack: parseJsonArray(row.tech_stack),
+    target_pelanggan: parseJsonArray(row.target_pelanggan),
+    solusi: parseJsonArray(row.solusi),
+    benefit: parseJsonArray(row.benefit),
     featured: Boolean(row.featured),
   };
 }
@@ -28,6 +36,9 @@ export async function POST(req: NextRequest) {
       ...body,
       id,
       tech_stack: JSON.stringify(body.tech_stack ?? []),
+      target_pelanggan: JSON.stringify(body.target_pelanggan ?? []),
+      solusi: JSON.stringify(body.solusi ?? []),
+      benefit: JSON.stringify(body.benefit ?? []),
     });
     const row = await db.select().from(protofolioProjects).where(eq(protofolioProjects.id, id)).limit(1);
     return NextResponse.json(parseRow(row[0]), { status: 201 });

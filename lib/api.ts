@@ -66,6 +66,10 @@ export type Project = {
   tech_stack: string[];
   project_url: string | null;
   github_url: string | null;
+  // Per-project catalog content (Target Pelanggan / Solusi / Benefit)
+  target_pelanggan: string[];
+  solusi: string[];
+  benefit: string[];
   featured: boolean;
   sort_order: number;
   created_at: string;
