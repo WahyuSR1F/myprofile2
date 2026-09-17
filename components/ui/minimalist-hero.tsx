@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SocialLink {
@@ -19,6 +20,8 @@ interface MinimalistHeroProps {
   ctaHref?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
+  cvHref?: string;
+  cvLabel?: string;
   socials?: SocialLink[];
   availableForWork?: boolean;
   images: string[];
@@ -50,6 +53,8 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
   ctaHref = "#contact",
   secondaryCtaText,
   secondaryCtaHref = "#projects",
+  cvHref,
+  cvLabel,
   socials,
   availableForWork = false,
   images,
@@ -183,6 +188,18 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
                 {description}
               </p>
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+                {cvHref && (
+                  <a
+                    href={cvHref}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-mistral-secondary h-11 px-6 w-full sm:w-auto gap-2"
+                  >
+                    <Download className="h-4 w-4" />
+                    {cvLabel ?? "Unduh CV"}
+                  </a>
+                )}
                 <a href={ctaHref} className="btn-mistral-primary h-11 px-6 w-full sm:w-auto">
                   {ctaText}
                 </a>

@@ -170,6 +170,14 @@ async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
+// ─── CV ──────────────────────────────────────────────────────────────────────
+
+export const DEFAULT_CV_URL = '/files/cv-budi-santoso.pdf';
+
+export function getCvUrl(profile: { cv_url?: string | null } | null | undefined): string {
+  return profile?.cv_url?.trim() || DEFAULT_CV_URL;
+}
+
 // ─── Profile ──────────────────────────────────────────────────────────────────
 
 export const profileApi = {

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Profile } from "@/lib/supabase";
 import { MinimalistHero } from "@/components/ui/minimalist-hero";
+import { getCvUrl } from "@/lib/api";
 import { Linkedin, Github, Twitter, Instagram } from "lucide-react";
 
 interface Props {
@@ -35,6 +36,8 @@ export function Hero({ profile }: Props) {
     socials.push({ href: profile.instagram_url, label: "Instagram", icon: <Instagram className="h-4 w-4" /> });
   }
 
+  const cvUrl = getCvUrl(profile);
+
   return (
     <MinimalistHero
       tagline={profile?.title ?? "Fullstack Developer & DevOps Engineer"}
@@ -47,6 +50,8 @@ export function Hero({ profile }: Props) {
       ctaText="Let's Work Together"
       secondaryCtaText="View Projects"
       secondaryCtaHref="#projects"
+      cvHref={cvUrl}
+      cvLabel="Unduh CV"
       socials={socials}
       availableForWork={profile?.available_for_work}
       avatar={profile?.photo_url?.trim() ? profile.photo_url : "/images/profile/profile.png"}

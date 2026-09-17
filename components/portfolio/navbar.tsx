@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Profile } from '@/lib/api';
-import { Menu, X, Code2, Sun, Moon } from 'lucide-react';
+import { Profile, getCvUrl } from '@/lib/api';
+import { Menu, X, Code2, Sun, Moon, Download } from 'lucide-react';
 import { useTheme } from '@/lib/theme-context';
 
 interface Props {
@@ -13,6 +13,7 @@ export function Navbar({ profile }: Props) {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
+  const cvUrl = getCvUrl(profile);
 
   const links = [
     { href: '#about', label: 'About' },
@@ -91,6 +92,16 @@ export function Navbar({ profile }: Props) {
           </div>
 
           <div className="flex items-center gap-1">
+            <a
+              href={cvUrl}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex btn-mistral-secondary h-9 px-3 gap-1.5"
+            >
+              <Download className="h-4 w-4" />
+              <span>Unduh CV</span>
+            </a>
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -112,6 +123,16 @@ export function Navbar({ profile }: Props) {
 
         {menuOpen && (
           <div id="mobile-menu" className="md:hidden pb-4 space-y-1 animate-fade-in-up">
+            <a
+              href={cvUrl}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium bg-primary/10 text-primary"
+            >
+              <Download className="h-4 w-4" />
+              Unduh CV
+            </a>
             {links.map((link) => (
               <a
                 key={link.href}
