@@ -288,7 +288,7 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
         <div className="relative z-[3] w-full border-t border-border/60 bg-card/30 py-6 backdrop-blur-sm">
           {/* Header: Daftar Kerja Sama */}
           <div className="container mx-auto mb-5 flex items-center gap-4 px-4 sm:px-6 lg:px-8">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">
+            <span className="text-base sm:text-lg font-bold uppercase tracking-[0.18em] text-foreground whitespace-nowrap">
               {marqueeTitle}
             </span>
             <div className="h-px flex-1 bg-border/60" />
