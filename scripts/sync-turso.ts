@@ -114,6 +114,12 @@ const tables = [
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   )`,
+  `CREATE TABLE IF NOT EXISTS protofolio_partners (
+    id TEXT PRIMARY KEY, name TEXT NOT NULL, logo_url TEXT, url TEXT,
+    sort_order INTEGER DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
   `CREATE TABLE IF NOT EXISTS sipd_profiles (
     id TEXT PRIMARY KEY, name TEXT NOT NULL DEFAULT '', email TEXT NOT NULL DEFAULT '',
     role TEXT NOT NULL DEFAULT 'pemohon', company TEXT, phone TEXT, avatar_url TEXT,
@@ -177,6 +183,7 @@ const copyOrder = [
   'protofolio_certificates',
   'protofolio_achievements',
   'protofolio_courses',
+  'protofolio_partners',
   'protofolio_services',
   'sipd_profiles',
   'sipd_projects',

@@ -118,6 +118,16 @@ const tables = [
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   )`,
 
+  `CREATE TABLE IF NOT EXISTS protofolio_partners (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    logo_url TEXT,
+    url TEXT,
+    sort_order INTEGER DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )`,
+
   `CREATE TABLE IF NOT EXISTS protofolio_achievements (
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
@@ -250,6 +260,7 @@ async function migrate() {
       "ALTER TABLE protofolio_projects ADD COLUMN solusi TEXT DEFAULT '[]'",
       "ALTER TABLE protofolio_projects ADD COLUMN benefit TEXT DEFAULT '[]'",
     ];
+    // Note: tabel protofolio_partners dibuat via CREATE TABLE IF NOT EXISTS di atas.
     for (const stmt of alterCols) {
       try {
         await client.execute(stmt);

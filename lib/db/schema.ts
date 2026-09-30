@@ -125,6 +125,15 @@ export const protofolioCertificates = sqliteTable('protofolio_certificates', {
   ...timestamps,
 });
 
+export const protofolioPartners = sqliteTable('protofolio_partners', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text('name').notNull(),
+  logo_url: text('logo_url'),
+  url: text('url'),
+  sort_order: integer('sort_order').default(0),
+  ...timestamps,
+});
+
 export const protofolioAchievements = sqliteTable('protofolio_achievements', {
   id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
   title: text('title').notNull(),
@@ -247,6 +256,9 @@ export type PortfolioSettings = typeof protofolioSettings.$inferSelect;
 
 export type PortfolioCertificate = typeof protofolioCertificates.$inferSelect;
 export type NewPortfolioCertificate = typeof protofolioCertificates.$inferInsert;
+
+export type PortfolioPartner = typeof protofolioPartners.$inferSelect;
+export type NewPortfolioPartner = typeof protofolioPartners.$inferInsert;
 
 export type PortfolioAchievement = typeof protofolioAchievements.$inferSelect;
 export type NewPortfolioAchievement = typeof protofolioAchievements.$inferInsert;

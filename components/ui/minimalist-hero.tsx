@@ -25,6 +25,7 @@ interface MinimalistHeroProps {
   socials?: SocialLink[];
   availableForWork?: boolean;
   images: string[];
+  marqueeTitle?: string;
   avatar?: string;
   className?: string;
 }
@@ -58,6 +59,7 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
   socials,
   availableForWork = false,
   images,
+  marqueeTitle = "Daftar Kerja Sama",
   avatar,
   className,
 }) => {
@@ -284,6 +286,13 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
       {/* Bottom brand marquee — always moves right→left, images flush with no gaps */}
       {images.length > 0 && (
         <div className="relative z-[3] w-full border-t border-border/60 bg-card/30 py-6 backdrop-blur-sm">
+          {/* Header: Daftar Kerja Sama */}
+          <div className="container mx-auto mb-5 flex items-center gap-4 px-4 sm:px-6 lg:px-8">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">
+              {marqueeTitle}
+            </span>
+            <div className="h-px flex-1 bg-border/60" />
+          </div>
           <div className="relative overflow-hidden">
             <motion.div
               ref={trackRef}
@@ -301,7 +310,7 @@ export const MinimalistHero: React.FC<MinimalistHeroProps> = ({
                     src={src}
                     alt=""
                     aria-hidden
-                    className="h-28 md:h-36 aspect-[3/4] object-cover"
+                    className="h-24 md:h-28 w-auto max-w-[220px] object-contain"
                   />
                 ))}
             </motion.div>

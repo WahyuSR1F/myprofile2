@@ -156,6 +156,16 @@ export type Certificate = {
   updated_at: string;
 };
 
+export type Partner = {
+  id: string;
+  name: string;
+  logo_url: string | null;
+  url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 // ─── Helper ───────────────────────────────────────────────────────────────────
 
 async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
@@ -292,6 +302,18 @@ export const servicesApi = {
     apiFetch<Service>(`/api/services/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   delete: (id: string) =>
     apiFetch<{ success: boolean }>(`/api/services/${id}`, { method: 'DELETE' }),
+};
+
+// ─── Partners (Kerja Sama) ─────────────────────────────────────────────────────
+
+export const partnersApi = {
+  list: () => apiFetch<Partner[]>('/api/partners'),
+  create: (data: Omit<Partner, 'id' | 'created_at' | 'updated_at'>) =>
+    apiFetch<Partner>('/api/partners', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: Partial<Partner>) =>
+    apiFetch<Partner>(`/api/partners/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+  delete: (id: string) =>
+    apiFetch<{ success: boolean }>(`/api/partners/${id}`, { method: 'DELETE' }),
 };
 
 // ─── Certificates ─────────────────────────────────────────────────────────────

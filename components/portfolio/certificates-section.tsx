@@ -1,13 +1,30 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import type { Certificate } from '@/lib/api';
-import { ArrowRight, Award, Calendar } from 'lucide-react';
+import { ArrowRight, Award, Calendar, X, ZoomIn } from 'lucide-react';
 
 interface Props {
   certificates: Certificate[];
 }
 
 export function CertificatesSection({ certificates }: Props) {
+  const [lightbox, setLightbox] = useState<Certificate | null>(null);
+
+  // Close on Escape key + lock body scroll when open
+  useEffect(() => {
+    if (!lightbox) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setLightbox(null);
+    }
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [lightbox]);
   if (certificates.length === 0) return (
     <section id="certificates" className="relative overflow-hidden scroll-mt-20 bg-[#0a0a0c] py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -99,23 +116,29 @@ export function CertificatesSection({ certificates }: Props) {
                   )}
                 </div>
 
-                {/* Image side */}
+                {/* Image side — click to open full image modal */}
                 <div className="flex-1 w-full">
                   {cert.image_url ? (
-                    <a
-                      href={cert.url || '#'}
-                      target={cert.url ? '_blank' : undefined}
-                      rel={cert.url ? 'noopener noreferrer' : undefined}
-                      className="block"
+                    <button
+                      type="button"
+                      onClick={() => setLightbox(cert)}
+                      className="group/img relative block w-full cursor-zoom-in text-left"
+                      aria-label={`Lihat gambar penuh: ${cert.title}`}
                     >
-                      <div className="aspect-[16/9] overflow-clip rounded-xl border border-white/10 hover:border-primary/30 transition-colors">
+                      <div className="aspect-[16/9] overflow-clip rounded-xl border border-white/10 group-hover/img:border-primary/40 transition-colors">
                         <img
                           src={cert.image_url}
                           alt={cert.title}
-                          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover/img:scale-105"
                         />
                       </div>
-                    </a>
+                      <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 opacity-0 transition-all duration-300 group-hover/img:bg-black/40 group-hover/img:opacity-100">
+                        <span className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg">
+                          <ZoomIn className="h-4 w-4" />
+                          Lihat Gambar
+                        </span>
+                      </div>
+                    </button>
                   ) : (
                     <div className="aspect-[16/9] overflow-clip rounded-xl border border-white/10 bg-white/5 flex items-center justify-center">
                       <Award className="h-16 w-16 text-primary/30" />
@@ -127,6 +150,51 @@ export function CertificatesSection({ certificates }: Props) {
           })}
         </div>
       </div>
+
+      {/* Full image lightbox modal */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-sm"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.title}
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+            aria-label="Tutup"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <div
+            className="flex max-h-full w-full max-w-5xl flex-col items-center gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightbox.image_url!}
+              alt={lightbox.title}
+              className="max-h-[80vh] w-auto max-w-full rounded-lg object-contain shadow-2xl"
+            />
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-white">{lightbox.title}</h3>
+              {lightbox.issuer && <p className="text-sm text-slate-400">{lightbox.issuer}{lightbox.date ? ` — ${lightbox.date}` : ''}</p>}
+              {lightbox.url && (
+                <a
+                  href={lightbox.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                >
+                  <span>Buka sertifikat asli</span>
+                  <ArrowRight className="h-3 w-3" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

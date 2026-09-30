@@ -15,12 +15,13 @@ import { SettingsManager } from '@/components/admin/settings-manager';
 import { AchievementManager } from '@/components/admin/achievement-manager';
 import { CourseManager } from '@/components/admin/course-manager';
 import { CertificateManager } from '@/components/admin/certificate-manager';
+import { PartnerManager } from '@/components/admin/partner-manager';
 import { AboutEditor } from '@/components/admin/about-editor';
 import { ServiceManager } from '@/components/admin/service-manager';
 import { Menu, X, HeartPulse, LogOut } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
 
-type Tab = 'profile' | 'about' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'services' | 'messages' | 'settings';
+type Tab = 'profile' | 'about' | 'experiences' | 'skills' | 'projects' | 'education' | 'achievements' | 'certificates' | 'courses' | 'partners' | 'services' | 'messages' | 'settings';
 
 export default function AdminDashboardPage() {
   const [tab, setTab] = useState<Tab>('profile');
@@ -67,6 +68,7 @@ export default function AdminDashboardPage() {
     { id: 'achievements', label: 'Achievements' },
     { id: 'certificates', label: 'Certificates' },
     { id: 'courses', label: 'Courses' },
+    { id: 'partners', label: 'Kerja Sama' },
     { id: 'services', label: 'Layanan' },
     { id: 'messages', label: 'Messages', badge: messages.filter((m) => !m.is_read).length },
     { id: 'settings', label: 'Settings' },
@@ -149,6 +151,7 @@ export default function AdminDashboardPage() {
             {tab === 'achievements' && <AchievementManager />}
             {tab === 'certificates' && <CertificateManager />}
             {tab === 'courses' && <CourseManager />}
+            {tab === 'partners' && <PartnerManager />}
             {tab === 'services' && <ServiceManager />}
             {tab === 'messages' && <MessageInbox messages={messages} onUpdate={loadData} />}
             {tab === 'settings' && <SettingsManager settings={settings} onUpdate={loadData} />}

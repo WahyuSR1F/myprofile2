@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import {
   profileApi, experiencesApi, skillsApi, projectsApi,
-  educationApi, settingsApi, certificatesApi, achievementsApi, coursesApi, servicesApi
+  educationApi, settingsApi, certificatesApi, achievementsApi, coursesApi, servicesApi, partnersApi
 } from '@/lib/api';
-import type { Profile, Experience, Skill, Project, Education, Setting, Certificate, Achievement, Course, Service } from '@/lib/api';
+import type { Profile, Experience, Skill, Project, Education, Setting, Certificate, Achievement, Course, Service, Partner } from '@/lib/api';
 import { Navbar } from '@/components/portfolio/navbar';
 import { Hero } from '@/components/portfolio/hero';
 import { About } from '@/components/portfolio/about';
@@ -32,13 +32,14 @@ export default function Home() {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [partners, setPartners] = useState<Partner[]>([]);
   const [settings, setSettings] = useState<Setting[]>([]);
 
   useEffect(() => {
     async function load() {
       const safe = <T,>(p: Promise<T>, fallback: T) => p.catch(() => fallback);
 
-      const [p, e, s, pr, ed, cert, ach, crs, sv, st] = await Promise.all([
+      const [p, e, s, pr, ed, cert, ach, crs, sv, pt, st] = await Promise.all([
         safe(profileApi.get(), null),
         safe(experiencesApi.list(), []),
         safe(skillsApi.list(), []),
@@ -48,6 +49,7 @@ export default function Home() {
         safe(achievementsApi.list(), []),
         safe(coursesApi.list(), []),
         safe(servicesApi.list(), []),
+        safe(partnersApi.list(), []),
         safe(settingsApi.list(), []),
       ]);
 
@@ -60,6 +62,7 @@ export default function Home() {
       setAchievements(ach);
       setCourses(crs);
       setServices(sv);
+      setPartners(pt);
       setSettings(st);
       setLoading(false);
     }
@@ -100,7 +103,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar profile={profileData} />
       <main>
-        <Hero profile={profileData} />
+        <Hero profile={profileData} partners={partners} />
         {getSetting('show_about') && <About profile={profileData} skills={skills} />}
         {getSetting('show_experiences') && <ExperienceSection experiences={experiences} />}
         {getSetting('show_skills') && <Skills skills={skills} />}

@@ -47,12 +47,21 @@ export const metadata: Metadata = {
     description:
       'Fullstack Developer & DevOps Engineer specializing in scalable web applications, cloud infrastructure, and CI/CD pipelines.',
     siteName: 'Wahyu Sahri Rhamadhan Portfolio',
+    images: [
+      {
+        url: '/images/profile/profile.png',
+        width: 1200,
+        height: 1200,
+        alt: 'Wahyu Sahri Rhamadhan — Fullstack Developer & DevOps Engineer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Wahyu Sahri Rhamadhan | Fullstack Developer & DevOps Engineer',
     description:
       'Fullstack Developer & DevOps Engineer specializing in scalable web applications, cloud infrastructure, and CI/CD pipelines.',
+    images: ['/images/profile/profile.png'],
   },
   robots: {
     index: true,
@@ -66,6 +75,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+  },
+  icons: {
+    icon: '/images/profile/profile.png',
+    apple: '/images/profile/profile.png',
   },
   other: {
     'google-site-verification': 'ZcJRGcqiTkJSJAQimCPSGgLe5j_8adDJ0ULjLX5FfDU',

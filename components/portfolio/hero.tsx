@@ -1,27 +1,17 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Profile } from "@/lib/supabase";
+import { Profile, Partner } from "@/lib/api";
 import { MinimalistHero } from "@/components/ui/minimalist-hero";
 import { getCvUrl } from "@/lib/api";
 import { Linkedin, Github, Twitter, Instagram } from "lucide-react";
 
 interface Props {
   profile: Profile | null;
+  partners?: Partner[];
 }
 
-const SHOWCASE_IMAGES = [
-  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1545235617-9465d2a55698?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=60",
-];
-
-export function Hero({ profile }: Props) {
+export function Hero({ profile, partners }: Props) {
   const socials: { href: string; label: string; icon: ReactNode }[] = [];
   if (profile?.linkedin_url) {
     socials.push({ href: profile.linkedin_url, label: "LinkedIn", icon: <Linkedin className="h-4 w-4" /> });
@@ -37,6 +27,12 @@ export function Hero({ profile }: Props) {
   }
 
   const cvUrl = getCvUrl(profile);
+
+  // Marquee images: hanya logo partner kerja sama dari admin.
+  // Kalau belum ada partner, marquee disembunyikan (images kosong).
+  const marqueeImages = (partners ?? [])
+    .map((p) => p.logo_url?.trim())
+    .filter((src): src is string => !!src);
 
   return (
     <MinimalistHero
@@ -55,7 +51,8 @@ export function Hero({ profile }: Props) {
       socials={socials}
       availableForWork={profile?.available_for_work}
       avatar={profile?.photo_url?.trim() ? profile.photo_url : "/images/profile/profile.png"}
-      images={SHOWCASE_IMAGES}
+      images={marqueeImages}
+      marqueeTitle="Daftar Kerja Sama"
     />
   );
 }
