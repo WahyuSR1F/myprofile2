@@ -101,17 +101,17 @@ export function ExperienceSection({ experiences }: Props) {
                         <div className="flex-1 p-4 sm:p-5">
                           <div className="flex items-start justify-between gap-2 mb-2">
                             <div>
-                              <h3 className="font-semibold text-base sm:text-lg text-white">{exp.position}</h3>
-                              <p className="text-[#FA500F] font-medium text-xs sm:text-sm">{exp.company}</p>
+                              <h3 className="font-semibold text-base sm:text-lg text-slate-900 dark:text-white">{exp.position}</h3>
+                              <p className="text-orange-700 dark:text-[#FA500F] font-medium text-xs sm:text-sm">{exp.company}</p>
                             </div>
                             {exp.current && (
-                              <span className="shrink-0 px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium bg-[#FA500F]/20 text-[#FA500F] border border-[#FA500F]/30">
+                              <span className="shrink-0 px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium bg-orange-50 text-orange-700 border border-orange-200 dark:bg-[#FA500F]/20 dark:text-[#FA500F] dark:border-[#FA500F]/30">
                                 Current
                               </span>
                             )}
                           </div>
 
-                          <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-xs text-slate-400 mb-2 sm:mb-3">
+                          <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-xs text-slate-600 dark:text-slate-400 mb-2 sm:mb-3">
                             <span className="flex items-center gap-1">
                               <Calendar className="h-3 w-3 shrink-0" /> {exp.start_date} — {exp.current ? "Present" : exp.end_date ?? "Present"}
                             </span>
@@ -123,15 +123,15 @@ export function ExperienceSection({ experiences }: Props) {
                           </div>
 
                           {exp.description && (
-                            <p className="text-xs sm:text-sm text-slate-300 mb-2 sm:mb-3 leading-relaxed">{exp.description}</p>
+                            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-2 sm:mb-3 leading-relaxed">{exp.description}</p>
                           )}
 
                           {exp.achievements.length > 0 && (
                             <ul className="space-y-1 sm:space-y-1.5">
                               {exp.achievements.map((a, idx) => (
                                 <li key={idx} className="flex items-start gap-1.5 sm:gap-2 text-xs sm:text-sm">
-                                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#FA500F] shrink-0 mt-0.5" />
-                                  <span className="text-slate-300 leading-relaxed">{a}</span>
+                                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-700 dark:text-[#FA500F] shrink-0 mt-0.5" />
+                                  <span className="text-slate-600 dark:text-slate-300 leading-relaxed">{a}</span>
                                 </li>
                               ))}
                             </ul>

@@ -118,8 +118,16 @@
 
   .glass-card-light,
   .glass-card-dark {
-    @apply bg-card border border-border rounded-2xl;
+    /* Light mode: explicit white surface + hairline slate border + soft elevation
+       so card content always sits on a bright, defined background. */
+    @apply bg-white border border-slate-200 rounded-2xl shadow-sm;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Dark mode keeps the token-driven surface (bg-card / border-border) */
+  .dark .glass-card-light,
+  .dark .glass-card-dark {
+    @apply bg-card border-border;
   }
 
   /* Mistral-style hover: subtle lift + layered soft shadow + primary border tint */
@@ -138,7 +146,12 @@
 
   /* Mistral-style buttons — compact, rounded-md, flat (from mistral.ai: h-10 px-3, bg-action-primary, rounded-md) */
   .btn-mistral-primary {
-    @apply inline-flex items-center justify-center rounded-md bg-primary px-4 h-10 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed;
+    /* Light mode: darker orange so white label clears WCAG AA (5.18:1 vs 3.38:1) */
+    @apply inline-flex items-center justify-center rounded-md bg-orange-700 px-4 h-10 text-sm font-medium text-primary-foreground transition-colors hover:bg-orange-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .dark .btn-mistral-primary {
+    @apply bg-primary hover:bg-primary/90;
   }
 
   .btn-mistral-secondary {

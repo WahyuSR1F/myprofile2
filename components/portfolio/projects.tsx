@@ -34,8 +34,8 @@ export function Projects({ projects }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-dark p-12 text-center">
-            <p className="font-medium text-white">No projects yet</p>
-            <p className="text-sm mt-1 text-slate-400">Add projects via the admin panel.</p>
+            <p className="font-medium text-slate-900 dark:text-white">No projects yet</p>
+            <p className="text-sm mt-1 text-slate-600 dark:text-slate-400">Add projects via the admin panel.</p>
           </div>
         </div>
       </div>
@@ -100,16 +100,16 @@ export function Projects({ projects }: Props) {
 
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="font-semibold text-lg text-white">{project.title}</h3>
+                      <h3 className="font-semibold text-lg text-slate-900 dark:text-white">{project.title}</h3>
                       {project.featured && (
-                        <span className="flex items-center gap-1 shrink-0 text-xs font-medium text-primary">
+                        <span className="flex items-center gap-1 shrink-0 text-xs font-medium text-orange-700 dark:text-primary">
                           <Star className="h-3 w-3 fill-primary" /> Featured
                         </span>
                       )}
                     </div>
 
                     {project.description && (
-                      <p className="text-sm text-slate-300 mb-3 line-clamp-2">{project.description}</p>
+                      <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 line-clamp-2">{project.description}</p>
                     )}
 
                     {project.tech_stack.length > 0 && (
@@ -122,7 +122,7 @@ export function Projects({ projects }: Props) {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                    <div className="flex items-center gap-2 text-sm text-orange-700 dark:text-primary font-medium">
                       <span>View Catalog</span>
                       <Eye className="h-4 w-4" />
                     </div>

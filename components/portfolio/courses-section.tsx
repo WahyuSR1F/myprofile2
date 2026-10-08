@@ -42,9 +42,9 @@ export function CoursesSection({ courses }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-dark p-12 text-center">
-            <BookOpen className="h-12 w-12 mx-auto mb-3 text-[#FA500F]/70" />
-            <p className="font-medium text-white">No courses yet</p>
-            <p className="text-sm mt-1 text-slate-400">Add courses via the admin panel.</p>
+            <BookOpen className="h-12 w-12 mx-auto mb-3 text-orange-700/80 dark:text-[#FA500F]/70" />
+            <p className="font-medium text-slate-900 dark:text-white">No courses yet</p>
+            <p className="text-sm mt-1 text-slate-600 dark:text-slate-400">Add courses via the admin panel.</p>
           </div>
         </div>
       </div>

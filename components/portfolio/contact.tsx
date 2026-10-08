@@ -69,12 +69,12 @@ export function Contact({ profile }: Props) {
               {contactInfo.map((info) => (
                 <div key={info.label} className="glass-card-light p-5 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center shrink-0">
-                    <info.icon className="h-5 w-5 text-primary" />
+                    <info.icon className="h-5 w-5 text-orange-700 dark:text-primary" />
                   </div>
                   <div>
                     <div className="text-xs text-slate-500 dark:text-slate-400">{info.label}</div>
                     {info.href ? (
-                      <a href={info.href} className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">{info.value}</a>
+                      <a href={info.href} className="text-sm font-medium text-orange-700 hover:text-orange-800 dark:text-primary dark:hover:text-primary/80 transition-colors">{info.value}</a>
                     ) : (
                       <div className="text-sm font-medium text-slate-900 dark:text-white">{info.value}</div>
                     )}

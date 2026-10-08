@@ -15,23 +15,23 @@ const GROUP_META: Record<
   target: {
     label: "Target Pelanggan",
     icon: Users,
-    accent: "text-[#FA500F]",
-    bg: "bg-[#FA500F]/10",
-    border: "border-[#FA500F]/30",
+    accent: "text-orange-700 dark:text-[#FA500F]",
+    bg: "bg-orange-50 dark:bg-[#FA500F]/10",
+    border: "border-orange-200 dark:border-[#FA500F]/30",
   },
   solusi: {
     label: "Solusi yang Ditawarkan",
     icon: Wrench,
-    accent: "text-emerald-400",
-    bg: "bg-emerald-400/10",
-    border: "border-emerald-400/30",
+    accent: "text-emerald-600 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-400/10",
+    border: "border-emerald-200 dark:border-emerald-400/30",
   },
   benefit: {
     label: "Benefit",
     icon: TrendingUp,
-    accent: "text-sky-400",
-    bg: "bg-sky-400/10",
-    border: "border-sky-400/30",
+    accent: "text-sky-600 dark:text-sky-400",
+    bg: "bg-sky-50 dark:bg-sky-400/10",
+    border: "border-sky-200 dark:border-sky-400/30",
   },
 };
 
@@ -112,10 +112,10 @@ export function ServicesSection({ services }: Props) {
                               <CheckCircle2 className={`h-4.5 w-4.5 ${g.meta.accent}`} />
                             </div>
                           )}
-                          <h4 className="font-semibold text-sm sm:text-base text-white leading-snug">{s.title}</h4>
+                          <h4 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-white leading-snug">{s.title}</h4>
                         </div>
                         {s.description && (
-                          <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed">{s.description}</p>
+                          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300/90 leading-relaxed">{s.description}</p>
                         )}
                       </motion.div>
                     ))}

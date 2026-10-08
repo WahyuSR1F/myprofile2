@@ -33,7 +33,7 @@ export function AchievementsSection({ achievements }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-light p-12 text-center">
-            <Trophy className="h-12 w-12 mx-auto mb-3 text-primary/50" />
+            <Trophy className="h-12 w-12 mx-auto mb-3 text-orange-700/70 dark:text-primary/50" />
             <p className="font-medium text-slate-900 dark:text-white">No achievements yet</p>
             <p className="text-sm mt-1 text-slate-500 dark:text-slate-400">Add achievements via the admin panel.</p>
           </div>

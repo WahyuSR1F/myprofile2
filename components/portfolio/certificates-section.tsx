@@ -34,9 +34,9 @@ export function CertificatesSection({ certificates }: Props) {
             <div className="section-divider-light" />
           </div>
           <div className="glass-card-dark p-12 text-center">
-            <Award className="h-12 w-12 mx-auto mb-3 text-primary/70" />
-            <p className="font-medium text-white">No certificates yet</p>
-            <p className="text-sm mt-1 text-slate-400">Add certificates via the admin panel.</p>
+            <Award className="h-12 w-12 mx-auto mb-3 text-orange-700/80 dark:text-primary/70" />
+            <p className="font-medium text-slate-900 dark:text-white">No certificates yet</p>
+            <p className="text-sm mt-1 text-slate-600 dark:text-slate-400">Add certificates via the admin panel.</p>
           </div>
         </div>
       </div>
