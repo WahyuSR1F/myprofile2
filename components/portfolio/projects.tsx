@@ -11,7 +11,9 @@ interface Props {
 }
 
 export function Projects({ projects }: Props) {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  // threshold 0: the grid wrapper can be far taller than the viewport, so a
+  // ratio-based threshold would never fire on small screens.
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0 });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   if (projects.length === 0) return (
@@ -66,7 +68,7 @@ export function Projects({ projects }: Props) {
                   role="button"
                   tabIndex={0}
                   aria-label={`View details for ${project.title}`}
-                  className="glass-card-dark overflow-hidden animate-fade-in-up cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className={`glass-card-dark overflow-hidden cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${inView ? 'animate-fade-in-up' : ''}`}
                   style={{ animationDelay: `${i * 150}ms`, opacity: 0 }}
                   onClick={() => setSelectedProject(project)}
                   onKeyDown={(e) => {

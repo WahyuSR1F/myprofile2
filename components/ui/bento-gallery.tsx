@@ -194,7 +194,10 @@ const InteractiveImageBentoGallery: React.FC<
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            // amount must stay small: this grid is much larger than the viewport
+            // (w-max, horizontally scrollable), so a high ratio like 0.2 can never
+            // be reached on smaller screens and the cards stay hidden forever.
+            viewport={{ once: true, amount: 0.05 }}
           >
             {imageItems.map((item) => (
               <motion.div
