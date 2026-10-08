@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@libsql/client';
+import { createDbClient } from '@/lib/db';
 
 // Idempotent ALTER statements — "duplicate column" errors are ignored.
 const ALTER_STATEMENTS = [
@@ -11,10 +11,7 @@ const ALTER_STATEMENTS = [
 
 export async function POST() {
   try {
-    const client = createClient({
-      url: process.env.TURSO_DATABASE_URL!,
-      authToken: process.env.TURSO_AUTH_TOKEN!,
-    });
+    const client = createDbClient();
 
     const applied: string[] = [];
     const skipped: string[] = [];

@@ -41,6 +41,7 @@ const tables = [
     description TEXT,
     achievements TEXT DEFAULT '[]',
     location TEXT,
+    image_url TEXT,
     sort_order INTEGER DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
@@ -256,6 +257,7 @@ async function migrate() {
       "ALTER TABLE protofolio_profiles ADD COLUMN keterangan_pengalaman TEXT",
       "ALTER TABLE protofolio_profiles ADD COLUMN about_highlights TEXT DEFAULT '[]'",
       "ALTER TABLE protofolio_profiles ADD COLUMN about_stats TEXT DEFAULT '[]'",
+      "ALTER TABLE protofolio_experiences ADD COLUMN image_url TEXT",
       "ALTER TABLE protofolio_projects ADD COLUMN target_pelanggan TEXT DEFAULT '[]'",
       "ALTER TABLE protofolio_projects ADD COLUMN solusi TEXT DEFAULT '[]'",
       "ALTER TABLE protofolio_projects ADD COLUMN benefit TEXT DEFAULT '[]'",
